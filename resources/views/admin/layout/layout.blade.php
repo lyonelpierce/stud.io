@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="{{ url('/admin/assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ url('/admin/assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ url('/admin/assets/css/demo.css') }}" />
+    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/select2/select2.css') }}" />
+
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
@@ -103,6 +105,8 @@
     <script src="{{ url('/admin/assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ url('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ url('/admin/assets/vendor/libs/node-waves/node-waves.js') }}"></script>
+    <script src="{{ url('/admin/assets/vendor/libs/select2/select2.js') }}"></script>
+
 
     <script src="{{ url('/admin/assets/vendor/libs/hammer/hammer.js') }}"></script>
 

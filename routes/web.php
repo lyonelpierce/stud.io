@@ -44,6 +44,15 @@ Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function
 
         // Admin Dashboard Route
         Route::get('dashboard', 'AdminController@dashboard');
+
+        // Update Admin Account
+        Route::match(['get', 'post'], 'account', 'AdminController@updateAdminDetails');
+
+        // Update Admin Password
+        Route::match(['get', 'post'], 'security', 'AdminController@updateAdminPassword');
     });
 
 });
+
+// State City Route
+Route::get('/cities/{stateId}', 'App\Http\Controllers\StateCityController@getCitiesByState');

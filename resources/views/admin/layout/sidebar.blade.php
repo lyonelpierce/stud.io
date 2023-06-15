@@ -27,7 +27,7 @@
             fill="#7367F0" />
         </svg>
         </span>
-        <span class="app-brand-text demo menu-text fw-bold">Vuexy</span>
+        <span class="app-brand-text demo menu-text fw-bold">Stud.io</span>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -41,16 +41,28 @@
     <ul class="menu-inner py-1">
     <!-- Page -->
     <li class="menu-item active">
-        <a href="index.html" class="menu-link">
+        <a href="/admin/dashboard" class="menu-link">
         <i class="menu-icon tf-icons ti ti-smart-home"></i>
-        <div data-i18n="Page 1">Page 1</div>
+        <div data-i18n="Dashboard">Dashboard</div>
         </a>
     </li>
     <li class="menu-item">
-        <a href="page-2.html" class="menu-link">
-        <i class="menu-icon tf-icons ti ti-app-window"></i>
-        <div data-i18n="Page 2">Page 2</div>
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+        <i class="menu-icon tf-icons ti ti-settings"></i>
+        <div data-i18n="Settings">Settings</div>
         </a>
+        <ul class="menu-sub">
+        <li class="menu-item">
+            <a href="{{ url('admin/account') }}" class="menu-link">
+            <div data-i18n="List">Account</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="{{ url('admin/security') }}" class="menu-link">
+            <div data-i18n="Preview">Security</div>
+            </a>
+        </li>
+        </ul>
     </li>
     </ul>
 </aside>

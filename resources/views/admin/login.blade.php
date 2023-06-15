@@ -13,7 +13,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login Cover - Pages | Vuexy - Bootstrap Admin Template</title>
+    <title>Login | Stud.io</title>
 
     <meta name="description" content="" />
 
@@ -87,7 +87,7 @@
           <div class="w-px-400 mx-auto">
             <!-- Logo -->
             <div class="app-brand mb-4">
-              <a href="index.html" class="app-brand-link gap-2">
+              <a href="/" class="app-brand-link gap-2">
                 <span class="app-brand-logo demo">
                   <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -117,7 +117,7 @@
               </a>
             </div>
             <!-- /Logo -->
-            <h3 class="mb-1 fw-bold">Welcome to Vuexy! 👋</h3>
+            <h3 class="mb-1 fw-bold">Welcome to Stud.io! 👋</h3>
             <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
             <!-- Bootstrap Alert -->
@@ -135,7 +135,6 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-
 
             <form id="formAuthentication" class="mb-3" action="{{ url('admin/login') }}" method="POST">@CSRF
               <div class="mb-3">
