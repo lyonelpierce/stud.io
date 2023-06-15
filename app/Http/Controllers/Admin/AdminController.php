@@ -100,11 +100,11 @@ class AdminController extends Controller
                         // File is not an image, handle the error accordingly
                         return redirect()->back()->with('error_message', 'El archivo seleccionado no es una imagen válida.');
                     }
-                } else if (!empty($data['currentAdminImage'])) {
-                    $imageName = $data['currentAdminImage'];
-                } else {
-                    $imageName = "";
-                }
+                } 
+            } elseif (!empty($data['currentAdminImage'])) {
+                $imageName = $data['currentAdminImage'];
+            } else{
+                $imageName = "";
             }
 
             Admin::where('id', Auth::guard('admin')->user()->id)->update(['firstname'=>$data['accountFirstName'], 'lastname'=>$data['accountLastName'], 'address'=>$data['accountAddress'], 'city'=>$data['accountCity'], 'state'=>$data['accountState'], 'mobile'=>$data['accountMobile'], 'image'=>$imageName]);

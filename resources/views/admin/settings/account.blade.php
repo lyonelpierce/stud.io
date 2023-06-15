@@ -63,7 +63,7 @@
                     </li> -->
                     <li class="mb-2 pt-1">
                         <span class="fw-semibold me-1">Teléfono:</span>
-                        <span>{{ $adminDetails['mobile']}}</span>
+                        <span>09-{{ $adminDetails['mobile']}}</span>
                     </li>
                     <li class="mb-2 pt-1">
                         <span class="fw-semibold me-1">Provincia:</span>
@@ -78,9 +78,9 @@
                         <span>{{ $adminDetails['address']}}</span>
                     </li>
                 </ul>
-                <div class="d-flex justify-content-center">
+                <!-- <div class="d-flex justify-content-center">
                     <a href="javascript:;" class="btn btn-label-danger suspend-user">Eliminar Cuenta</a>
-                </div>
+                </div> -->
                 </div>
             </div>
             </div>
