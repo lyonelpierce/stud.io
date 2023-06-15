@@ -13,12 +13,21 @@
             <div class="card-body">
                 <div class="user-avatar-section">
                 <div class="d-flex align-items-center flex-column">
-                    <img
-                    class="img-fluid rounded mb-3 pt-1 mt-4"
-                    src="{{ url('admin/assets/img/avatars/15.png') }}"
-                    height="100"
-                    width="100"
-                    alt="User avatar" />
+                    
+                    @if (!empty($adminDetails['image']))
+                        <img class="img-fluid rounded mb-3 pt-1 mt-4"
+                            src="{{ url('admin/images/photos/'.$adminDetails['image']) }}"
+                            height="100"
+                            width="100"
+                            alt="User avatar">
+                    @else
+                        <img class="img-fluid rounded mb-3 pt-1 mt-4"
+                            src="{{ url('admin/images/photos/default.png') }}"
+                            height="100"
+                            width="100"
+                            alt="User avatar">
+                    @endif
+                    
                     <div class="user-info text-center">
                     <h4 class="mb-2">{{ $adminDetails['firstname']. ' ' .$adminDetails['lastname'] }}</h4>
                     <span class="badge bg-label-success mt-1">{{ $adminDetails['type'] }}</span>
@@ -114,7 +123,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-                <form id="editUserForm" class="row g-3 mb-4" action="{{ url('admin/account') }}" method="post">@csrf
+                <form id="editUserForm" class="row g-3 mb-4" action="{{ url('admin/account') }}" method="post" enctype="multipart/form-data">@csrf
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="accountFirstName">Nombre</label>
                         <input
@@ -183,6 +192,13 @@
                             class="form-control phone-number-mask"
                             placeholder="8 123 4567" />
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="accountImage" class="form-label">Imagen</label>
+                        <input class="form-control" type="file" id="accountImage" name="accountImage"/>
+                        @if(!empty(Auth::guard('admin')->user()->image))
+                            <input type="hidden" name="currentAdminImage" value="{{ Auth::guard('admin')->user()->image }}">
+                        @endif
                     </div>
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary mt-2 me-sm-3 me-1">Actualizar</button>

@@ -8,6 +8,7 @@ use App\Models\State;
 use App\Models\City;
 use Illuminate\Http\Request;
 use Auth;
+use Image;
 
 class AdminController extends Controller
 {
@@ -81,7 +82,25 @@ class AdminController extends Controller
 
             $this->validate($request, $rules, $customMessages);
 
-            Admin::where('id', Auth::guard('admin')->user()->id)->update(['firstname'=>$data['accountFirstName'], 'lastname'=>$data['accountLastName'], 'address'=>$data['accountAddress'], 'city'=>$data['accountCity'], 'state'=>$data['accountState'], 'mobile'=>$data['accountMobile']]);
+            // Upload Image
+            if($request->hasFile('accountImage')) {
+                $image_tmp = $request->file('accountImage');
+                if($image_tmp->isValid()) {
+                    // Get Image Extension
+                    $extension = $image_tmp->getClientOriginalExtension();
+                    // Generate New Image Name
+                    $imageName = rand(111, 99999).'.'.$extension;
+                    $imagePath = 'admin/images/photos/'.$imageName;
+                    // Upload Image
+                    Image::make($image_tmp)->resize(500, 500)->save($imagePath);
+                } else if(!empty($data['currentAdminImage'])) {
+                    $imageName = $data['currentAdminImage'];
+                } else {
+                    $imageName = "";
+                }
+            }
+
+            Admin::where('id', Auth::guard('admin')->user()->id)->update(['firstname'=>$data['accountFirstName'], 'lastname'=>$data['accountLastName'], 'address'=>$data['accountAddress'], 'city'=>$data['accountCity'], 'state'=>$data['accountState'], 'mobile'=>$data['accountMobile'], 'image'=>$imageName]);
 
             return redirect()->back()->with('success_message', 'Información Actualizada!');
         }

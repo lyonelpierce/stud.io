@@ -43,23 +43,23 @@
     <li class="menu-item active">
         <a href="/admin/dashboard" class="menu-link">
         <i class="menu-icon tf-icons ti ti-smart-home"></i>
-        <div data-i18n="Dashboard">Dashboard</div>
+        <div data-i18n="Dashboard">Tablero</div>
         </a>
     </li>
     <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-settings"></i>
-        <div data-i18n="Settings">Settings</div>
+        <div data-i18n="Settings">Ajustes</div>
         </a>
         <ul class="menu-sub">
         <li class="menu-item">
             <a href="{{ url('admin/account') }}" class="menu-link">
-            <div data-i18n="List">Account</div>
+            <div data-i18n="Account">Cuenta</div>
             </a>
         </li>
         <li class="menu-item">
             <a href="{{ url('admin/security') }}" class="menu-link">
-            <div data-i18n="Preview">Security</div>
+            <div data-i18n="Security">Seguridad</div>
             </a>
         </li>
         </ul>
