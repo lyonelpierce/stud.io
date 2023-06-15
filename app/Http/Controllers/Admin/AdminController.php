@@ -9,6 +9,7 @@ use App\Models\City;
 use Illuminate\Http\Request;
 use Auth;
 use Image;
+use Hash;
 
 class AdminController extends Controller
 {
@@ -119,6 +120,47 @@ class AdminController extends Controller
 
         $cities = City::where('state_id', $selectedState['id'])->get()->toArray();
         return view('admin.settings.account')->with(compact('adminDetails', 'states', 'cities'));
+    }
+
+    // Update Admin Password
+    public function updateAdminPassword(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+
+            $rules = [
+                'accountCurrentPassword' => 'required',
+                'accountNewPassword' => 'required|min:8|confirmed',
+                'accountConfirmPassword' => 'required',
+            ];
+
+            $customMessages = [
+                'accountCurrentPassword.required' => 'Contraseña actual es requerida',
+                'accountNewPassword.required' => 'Nueva contraseña es requerida',
+                'accountNewPassword.min' => 'La nueva contraseña debe tener al menos 8 caracteres',
+                'accountNewPassword.confirmed' => 'La nueva contraseña y la confirmación de contraseña no coinciden',
+                'accountConfirmPassword.required' => 'Confirmación de contraseña es requerida',
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
+            if(Hash::check($data['accountCurrentPassword'], Auth::guard('admin')->user()->password)){
+                if($data['accountConfirmPassword'] == $data['accountNewPassword']){
+                    Admin::where('id', Auth::guard('admin')->user()->id)->update(['password'=>bcrypt($data['accountNewPassword'])]);
+                    return redirect()->back()->with('success_message', 'Contraseña Actualizada!');
+                } else{
+                    return redirect()->back()->with('error_message', 'La nueva contraseña y la confirmación de contraseña no coinciden!');
+                }
+            } else{
+                return redirect()->back()->with('error_message', 'Contraseña actual incorrecta!');
+            }
+        }
+        $adminDetails = Admin::where('email', Auth::guard('admin')->user()->email)->first()->toArray();
+        return view('admin.settings.security')->with(compact('adminDetails'));
+    }
+
+    // Delete Account
+    public function deleteAccount(Request $request){
+        return view('admin.settings.delete')->with(compact('adminDetails'));
     }
 
 }

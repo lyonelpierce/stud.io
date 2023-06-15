@@ -48,7 +48,7 @@
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="/admin/account">
                         <i class="ti ti-settings me-2 ti-sm"></i>
                         <span class="align-middle">Settings</span>
                       </a>
