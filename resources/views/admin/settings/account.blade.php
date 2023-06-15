@@ -27,7 +27,7 @@
                             width="100"
                             alt="User avatar">
                     @endif
-                    
+
                     <div class="user-info text-center">
                     <h4 class="mb-2">{{ $adminDetails['firstname']. ' ' .$adminDetails['lastname'] }}</h4>
                     <span class="badge bg-label-success mt-1">{{ $adminDetails['type'] }}</span>
@@ -115,6 +115,12 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
+            @if(Session::has('error_message'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ Session::get('error_message') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
             @if($errors->any())
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
               @foreach($errors->all() as $error)
@@ -194,7 +200,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="accountImage" class="form-label">Imagen</label>
+                        <label for="accountImage" class="form-label">Imagen (jpg, jpeg, png)</label>
                         <input class="form-control" type="file" id="accountImage" name="accountImage"/>
                         @if(!empty(Auth::guard('admin')->user()->image))
                             <input type="hidden" name="currentAdminImage" value="{{ Auth::guard('admin')->user()->image }}">

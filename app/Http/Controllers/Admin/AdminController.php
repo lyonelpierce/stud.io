@@ -83,17 +83,24 @@ class AdminController extends Controller
             $this->validate($request, $rules, $customMessages);
 
             // Upload Image
-            if($request->hasFile('accountImage')) {
+            if ($request->hasFile('accountImage')) {
                 $image_tmp = $request->file('accountImage');
-                if($image_tmp->isValid()) {
-                    // Get Image Extension
-                    $extension = $image_tmp->getClientOriginalExtension();
-                    // Generate New Image Name
-                    $imageName = rand(111, 99999).'.'.$extension;
-                    $imagePath = 'admin/images/photos/'.$imageName;
-                    // Upload Image
-                    Image::make($image_tmp)->resize(500, 500)->save($imagePath);
-                } else if(!empty($data['currentAdminImage'])) {
+                if ($image_tmp->isValid()) {
+                    // Check if the file is an image
+                    $allowedTypes = ['image/jpeg', 'image/png'];
+                    if (in_array($image_tmp->getMimeType(), $allowedTypes)) {
+                        // Get Image Extension
+                        $extension = $image_tmp->getClientOriginalExtension();
+                        // Generate New Image Name
+                        $imageName = rand(111, 99999).'.'.$extension;
+                        $imagePath = 'admin/images/photos/'.$imageName;
+                        // Upload Image
+                        Image::make($image_tmp)->resize(500, 500)->save($imagePath);
+                    } else {
+                        // File is not an image, handle the error accordingly
+                        return redirect()->back()->with('error_message', 'El archivo seleccionado no es una imagen válida.');
+                    }
+                } else if (!empty($data['currentAdminImage'])) {
                     $imageName = $data['currentAdminImage'];
                 } else {
                     $imageName = "";
