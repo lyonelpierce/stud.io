@@ -40,24 +40,24 @@
 
     <ul class="menu-inner py-1">
     <!-- Page -->
-    <li class="menu-item active">
+    <li class="menu-item{{ Request::is('admin/dashboard') ? ' active' : '' }}">
         <a href="/admin/dashboard" class="menu-link">
-        <i class="menu-icon tf-icons ti ti-smart-home"></i>
-        <div data-i18n="Dashboard">Tablero</div>
+            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+            <div data-i18n="Dashboard">Tablero</div>
         </a>
     </li>
-    <li class="menu-item">
+    <li class="menu-item{{ Request::is('admin/account') || Request::is('admin/security') ? ' active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons ti ti-settings"></i>
         <div data-i18n="Settings">Ajustes</div>
         </a>
         <ul class="menu-sub">
-        <li class="menu-item">
+        <li class="menu-item{{ Request::is('admin/account') ? ' active' : '' }}">
             <a href="{{ url('admin/account') }}" class="menu-link">
             <div data-i18n="Account">Cuenta</div>
             </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item{{ Request::is('admin/security') ? ' active' : '' }}">
             <a href="{{ url('admin/security') }}" class="menu-link">
             <div data-i18n="Security">Seguridad</div>
             </a>

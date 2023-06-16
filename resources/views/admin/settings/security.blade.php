@@ -4,7 +4,7 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Ajustes /</span> Cuenta</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Ajustes /</span> Seguridad</h4>
         <div class="row">
         <!-- User Sidebar -->
         <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">

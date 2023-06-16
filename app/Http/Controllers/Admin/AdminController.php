@@ -96,7 +96,7 @@ class AdminController extends Controller
                         $imageName = rand(111, 99999).'.'.$extension;
                         $imagePath = 'admin/images/photos/'.$imageName;
                         // Upload Image
-                        Image::make($image_tmp)->resize(500, 500)->save($imagePath);
+                        Image::make($image_tmp)->resize(600, 600)->save($imagePath);
                     } else {
                         // File is not an image, handle the error accordingly
                         return redirect()->back()->with('error_message', 'El archivo seleccionado no es una imagen válida.');
