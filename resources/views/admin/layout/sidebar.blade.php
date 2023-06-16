@@ -40,29 +40,38 @@
 
     <ul class="menu-inner py-1">
     <!-- Page -->
-    <li class="menu-item{{ Request::is('admin/dashboard') ? ' active' : '' }}">
-        <a href="/admin/dashboard" class="menu-link">
+    @if (Auth::guard('admin')->check())
+    <li class="menu-item{{ Request::routeIs('admin.dashboard') ? ' active' : '' }}">
+        <a href="{{ route('admin.dashboard') }}" class="menu-link">
             <i class="menu-icon tf-icons ti ti-smart-home"></i>
             <div data-i18n="Dashboard">Tablero</div>
         </a>
     </li>
-    <li class="menu-item{{ Request::is('admin/account') || Request::is('admin/security') ? ' active open' : '' }}">
+    <li class="menu-item{{ Request::routeIs('admin.account') || Request::routeIs('admin.security') ? ' active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
-        <i class="menu-icon tf-icons ti ti-settings"></i>
-        <div data-i18n="Settings">Ajustes</div>
+            <i class="menu-icon tf-icons ti ti-settings"></i>
+            <div data-i18n="Settings">Ajustes</div>
         </a>
         <ul class="menu-sub">
-        <li class="menu-item{{ Request::is('admin/account') ? ' active' : '' }}">
-            <a href="{{ url('admin/account') }}" class="menu-link">
-            <div data-i18n="Account">Cuenta</div>
-            </a>
-        </li>
-        <li class="menu-item{{ Request::is('admin/security') ? ' active' : '' }}">
-            <a href="{{ url('admin/security') }}" class="menu-link">
-            <div data-i18n="Security">Seguridad</div>
-            </a>
-        </li>
+            <li class="menu-item{{ Request::routeIs('admin.account') ? ' active' : '' }}">
+                <a href="{{ route('admin.account') }}" class="menu-link">
+                    <div data-i18n="Account">Cuenta</div>
+                </a>
+            </li>
+            <li class="menu-item{{ Request::routeIs('admin.security') ? ' active' : '' }}">
+                <a href="{{ route('admin.security') }}" class="menu-link">
+                    <div data-i18n="Security">Seguridad</div>
+                </a>
+            </li>
         </ul>
     </li>
+    @elseif (Auth::guard('vendor')->check())
+        <li class="menu-item{{ Request::routeIs('vendor.dashboard') ? ' active' : '' }}">
+            <a href="{{ route('vendor.dashboard') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div data-i18n="Dashboard">Tablero</div>
+            </a>
+        </li>
+    @endif
     </ul>
 </aside>

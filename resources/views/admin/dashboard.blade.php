@@ -1,6 +1,6 @@
 @extends('admin.layout.layout')
 @section('meta')
-    Tablero
+    Panel de Administración
 @endsection
 
 @section('content')

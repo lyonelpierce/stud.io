@@ -30,29 +30,25 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Admin Route Group
-Route::prefix('/admin')->namespace('App\Http\Controllers\Admin')->group(function () {
+// State City Dropdown Route
+Route::get('/cities/{stateId}', 'App\Http\Controllers\StateCityController@getCitiesByState');
 
-    // Admin Login Route
-    Route::match(['get', 'post'], 'login', 'AdminController@login');
+// Shared Login Route and Logic
+Route::match(['get', 'post'], 'login', 'App\Http\Controllers\AuthController@login')->name('login');
+Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
 
-    // Admin Logout Route
-    Route::get('logout', 'AdminController@logout');
+// Admin and Vendor Routes
+Route::namespace('App\Http\Controllers\Admin')->group(function () {
 
-    // Middleware
+    // Admin Dashboard
     Route::group(['middleware' => ['admin']], function () {
-
-        // Admin Dashboard Route
-        Route::get('dashboard', 'AdminController@dashboard');
-
-        // Update Admin Account
-        Route::match(['get', 'post'], 'account', 'AdminController@updateAdminDetails');
-
-        // Update Admin Password
-        Route::match(['get', 'post'], 'security', 'AdminController@updateAdminPassword');
+        Route::get('admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+        Route::match(['get', 'post'], 'admin/account', 'AdminController@updateAdminDetails')->name('admin.account');
+        Route::match(['get', 'post'], 'admin/security', 'AdminController@updateAdminPassword')->name('admin.security');
     });
 
+    // Vendor Dashboard
+    Route::group(['middleware' => ['vendor']], function () {
+        Route::get('vendor/dashboard', 'VendorController@dashboard')->name('vendor.dashboard');
+    });
 });
-
-// State City Route
-Route::get('/cities/{stateId}', 'App\Http\Controllers\StateCityController@getCitiesByState');

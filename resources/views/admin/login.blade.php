@@ -136,7 +136,7 @@
             </div>
             @endif
 
-            <form id="formAuthentication" class="mb-3" action="{{ url('admin/login') }}" method="POST">@CSRF
+            <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">@CSRF
               <div class="mb-3">
                 <label for="email" class="form-label">Correo Electrónico</label>
                 <input

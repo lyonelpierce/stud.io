@@ -40,8 +40,17 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">{{ Auth::guard('admin')->user()->firstname }} {{ Auth::guard('admin')->user()->lastname }}</span>
-                            <small class="text-muted">{{ Auth::guard('admin')->user()->type }}</small>
+                          @if (Auth::guard('admin')->check())
+                            <div class="flex-grow-1">
+                                <span class="fw-semibold d-block">{{ Auth::guard('admin')->user()->firstname }} {{ Auth::guard('admin')->user()->lastname }}</span>
+                                <small class="text-muted">{{ Auth::guard('admin')->user()->type }}</small>
+                            </div>
+                          @elseif (Auth::guard('vendor')->check())
+                            <div class="flex-grow-1">
+                                <span class="fw-semibold d-block">{{ Auth::guard('vendor')->user()->firstname }} {{ Auth::guard('vendor')->user()->lastname }}</span>
+                                <small class="text-muted">{{ Auth::guard('vendor')->user()->type }}</small>
+                            </div>
+                          @endif
                           </div>
                         </div>
                       </a>
@@ -56,7 +65,7 @@
                       </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/admin/account">
+                      <a class="dropdown-item" href="{{ url('panel/admin/account') }}">
                         <i class="ti ti-settings me-2 ti-sm"></i>
                         <span class="align-middle">Ajustes</span>
                       </a>
@@ -76,7 +85,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{{ url('admin/logout') }}">
+                      <a class="dropdown-item" href="{{ route('logout') }}">
                         <i class="ti ti-logout me-2 ti-sm"></i>
                         <span class="align-middle">Cerrar Sesión</span>
                       </a>
