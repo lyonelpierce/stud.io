@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('type');
-            $table->integer('vendor_id');
             $table->string('mobile');
             $table->string('state');
             $table->string('city');

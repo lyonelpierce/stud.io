@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('location');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('state');
+            $table->string('city');
+            $table->string('address');
             $table->string('mobile');
+            $table->string('document');
             $table->string('email')->unique();
             $table->tinyInteger('status');
             $table->timestamps();

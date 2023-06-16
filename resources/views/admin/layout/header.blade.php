@@ -22,7 +22,7 @@
                       @if (!empty(Auth::guard('admin')->user()->image))
                         <img src="{{ url('admin/images/photos/'.Auth::guard('admin')->user()->image) }}" alt class="h-auto rounded-circle" />
                       @else
-                        <img src="admin/images/photos/default.png" alt class="h-auto rounded-circle" />
+                        <img src="/admin/images/photos/default.png" alt class="h-auto rounded-circle" />
                       @endif
                     </div>
                   </a>
@@ -35,7 +35,7 @@
                               @if (!empty(Auth::guard('admin')->user()->image))
                                 <img src="{{ url('admin/images/photos/'.Auth::guard('admin')->user()->image) }}" alt class="h-auto rounded-circle" />
                               @else
-                                <img src="admin/images/photos/default.png" alt class="h-auto rounded-circle" />
+                                <img src="/admin/images/photos/default.png" alt class="h-auto rounded-circle" />
                               @endif
                             </div>
                           </div>
