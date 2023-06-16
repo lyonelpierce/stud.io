@@ -1,4 +1,9 @@
 @extends('admin.layout.layout')
+
+@section('meta')
+    Ajustes - Seguridad
+@endsection
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content -->
@@ -57,10 +62,6 @@
                         <span class="fw-semibold me-1">Email:</span>
                         <span>{{ $adminDetails['email'] }}</span>
                     </li>
-                    <!-- <li class="mb-2 pt-1">
-                        <span class="fw-semibold me-1">Status:</span>
-                        <span class="badge bg-label-success">Active</span>
-                    </li> -->
                     <li class="mb-2 pt-1">
                         <span class="fw-semibold me-1">Teléfono:</span>
                         <span>09-{{ $adminDetails['mobile']}}</span>
@@ -163,15 +164,15 @@
                 
             </div>
         </div>
-        <div class="card mb-4">
+        <!-- <div class="card mb-4">
             <h5 class="card-header">Eliminar Cuenta</h5>
-        <div class="card-body pb-0">
-            <p>Los datos de tu cuenta seran eliminados de forma permanente y no podran ser recuperados.</p>
-            <div class="d-flex mb-4">
-                <a href="javascript:;" class="btn btn-label-danger suspend-user">Eliminar Cuenta</a>
+            <div class="card-body pb-0">
+                <p>Los datos de tu cuenta seran eliminados de forma permanente y no podran ser recuperados.</p>
+                <div class="d-flex mb-4">
+                    <a href="javascript:;" class="btn btn-label-danger suspend-user">Eliminar Cuenta</a>
+                </div>
             </div>
-        </div>
-        </div>
+        </div> -->
             <!-- /Activity Timeline -->
 
         </div>
