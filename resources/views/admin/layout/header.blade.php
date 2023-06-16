@@ -19,8 +19,8 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      @if (!empty($adminDetails['image']))
-                        <img src="{{ url('admin/images/photos/'.$adminDetails['image']) }}" alt class="h-auto rounded-circle" />
+                      @if (!empty(Auth::guard('admin')->user()->image))
+                        <img src="{{ url('admin/images/photos/'.Auth::guard('admin')->user()->image) }}" alt class="h-auto rounded-circle" />
                       @else
                         <img src="admin/images/photos/default.png" alt class="h-auto rounded-circle" />
                       @endif
@@ -32,16 +32,16 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              @if (!empty($adminDetails['image']))
-                                <img src="{{ url('admin/images/photos/'.$adminDetails['image']) }}" alt class="h-auto rounded-circle" />
+                              @if (!empty(Auth::guard('admin')->user()->image))
+                                <img src="{{ url('admin/images/photos/'.Auth::guard('admin')->user()->image) }}" alt class="h-auto rounded-circle" />
                               @else
                                 <img src="admin/images/photos/default.png" alt class="h-auto rounded-circle" />
                               @endif
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">{{ $adminDetails['firstname'] }} {{ $adminDetails['lastname'] }}</span>
-                            <small class="text-muted">{{ $adminDetails['type'] }}</small>
+                            <span class="fw-semibold d-block">{{ Auth::guard('admin')->user()->firstname }} {{ Auth::guard('admin')->user()->lastname }}</span>
+                            <small class="text-muted">{{ Auth::guard('admin')->user()->type }}</small>
                           </div>
                         </div>
                       </a>
