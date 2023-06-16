@@ -21,7 +21,7 @@
                     
                     @if (!empty($adminDetails['image']))
                         <img class="img-fluid rounded mb-3 pt-1 mt-4"
-                            src="{{ url('admin/images/photos/'.$adminDetails['image']) }}"
+                            src="{{ Auth::guard('admin')->check() ? url('admin/images/photos/'.$adminDetails['image']) : url('vendor/images/photos/'.$adminDetails['image']) }}"
                             height="100"
                             width="100"
                             alt="User avatar">
@@ -98,14 +98,14 @@
             <!-- User Pills -->
             <ul class="nav nav-pills flex-column flex-md-row mb-4">
             <li class="nav-item">
-                <a class="nav-link active" href="javascript:void(0);"
-                ><i class="ti ti-user-check ti-xs me-1"></i>Cuenta</a
-                >
+                <a class="nav-link active" href="javascript:void(0);">
+                    <i class="ti ti-user-check ti-xs me-1"></i>Cuenta
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/security"
-                ><i class="ti ti-lock ti-xs me-1"></i>Seguridad</a
-                >
+                <a class="nav-link" href="{{ Auth::guard('admin')->check() ? route('admin.security') : route('vendor.security') }}">
+                    <i class="ti ti-lock ti-xs me-1"></i>Seguridad
+                </a>
             </li>
             </ul>
             <!--/ User Pills -->
@@ -134,7 +134,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-                <form id="editUserForm" class="row g-3 mb-4" action="{{ url('admin/account') }}" method="post" enctype="multipart/form-data">@csrf
+                <form id="editUserForm" class="row g-3 mb-4" action="{{ Auth::guard('admin')->check() ? url('admin/account') : url('vendor/account') }}" method="post" enctype="multipart/form-data">@csrf
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="accountFirstName">Nombre</label>
                         <input
@@ -207,8 +207,8 @@
                     <div class="mb-3">
                         <label for="accountImage" class="form-label">Imagen (jpg, jpeg, png)</label>
                         <input class="form-control" type="file" id="accountImage" name="accountImage"/>
-                        @if(!empty(Auth::guard('admin')->user()->image))
-                            <input type="hidden" name="currentAdminImage" value="{{ Auth::guard('admin')->user()->image }}">
+                        @if(!empty(Auth::guard('vendor')->user()->image))
+                            <input type="hidden" name="currentAdminImage" value="{{ Auth::guard('vendor')->user()->image }}">
                         @endif
                     </div>
                     <div class="col-12">

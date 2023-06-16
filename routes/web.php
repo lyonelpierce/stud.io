@@ -50,5 +50,7 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
     // Vendor Dashboard
     Route::group(['middleware' => ['vendor']], function () {
         Route::get('vendor/dashboard', 'VendorController@dashboard')->name('vendor.dashboard');
+        Route::match(['get', 'post'], 'vendor/account', 'VendorController@updateVendorDetails')->name('vendor.account');
+        Route::match(['get', 'post'], 'vendor/security', 'VendorController@updateVendorPassword')->name('vendor.security');
     });
 });

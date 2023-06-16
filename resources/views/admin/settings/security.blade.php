@@ -91,14 +91,14 @@
             <!-- User Pills -->
             <ul class="nav nav-pills flex-column flex-md-row mb-4">
             <li class="nav-item">
-                <a class="nav-link" href="/admin/account"
-                ><i class="ti ti-user-check ti-xs me-1"></i>Cuenta</a
-                >
+                <a class="nav-link" href="{{ Auth::guard('admin')->check() ? route('admin.account') : route('vendor.account') }}">
+                    <i class="ti ti-user-check ti-xs me-1"></i>Cuenta
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="javascript:void(0);"
-                ><i class="ti ti-lock ti-xs me-1"></i>Seguridad</a
-                >
+                <a class="nav-link active" href="javascript:void(0);">
+                    <i class="ti ti-lock ti-xs me-1"></i>Seguridad
+                </a>
             </li>
             </ul>
             <!--/ User Pills -->
@@ -127,7 +127,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
-                <form id="editUserForm" class="row g-3 mb-4" action="{{ url('admin/security') }}" method="post" enctype="multipart/form-data">@csrf
+                <form id="editUserForm" class="row g-3 mb-4" action="{{ Auth::guard('admin')->check() ? url('admin/security') : url('vendor/security') }}" method="post" enctype="multipart/form-data">@csrf
                     <div>
                     <div class="col-12 col-md-6">
                     <label class="form-label" for="accountCurrentPassword">Contraseña Actual</label>

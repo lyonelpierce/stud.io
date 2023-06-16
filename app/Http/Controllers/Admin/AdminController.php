@@ -95,7 +95,7 @@ class AdminController extends Controller
 
             $rules = [
                 'accountCurrentPassword' => 'required',
-                'accountNewPassword' => 'required|min:8|confirmed',
+                'accountNewPassword' => 'required|min:8',
                 'accountConfirmPassword' => 'required',
             ];
 
@@ -103,7 +103,6 @@ class AdminController extends Controller
                 'accountCurrentPassword.required' => 'Contraseña actual es requerida',
                 'accountNewPassword.required' => 'Nueva contraseña es requerida',
                 'accountNewPassword.min' => 'La nueva contraseña debe tener al menos 8 caracteres',
-                'accountNewPassword.confirmed' => 'La nueva contraseña y la confirmación de contraseña no coinciden',
                 'accountConfirmPassword.required' => 'Confirmación de contraseña es requerida',
             ];
 

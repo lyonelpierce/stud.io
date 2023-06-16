@@ -13,7 +13,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Login | Stud.io</title>
+    <title>Iniciar Sesión | Stud.io</title>
 
     <meta name="description" content="" />
 
@@ -117,8 +117,8 @@
               </a>
             </div>
             <!-- /Logo -->
-            <h3 class="mb-1 fw-bold">Welcome to Stud.io! 👋</h3>
-            <p class="mb-4">Please sign-in to your account and start the adventure</p>
+            <h3 class="mb-1 fw-bold">Bienvenido a Stud.io! 👋</h3>
+            <p class="mb-4">Inicia sesión para continuar</p>
 
             <!-- Bootstrap Alert -->
             @if(Session::has('error_message'))
@@ -144,7 +144,7 @@
                   class="form-control"
                   id="email"
                   name="email"
-                  placeholder="Enter your email"
+                  placeholder="Ingresa tu correo electrónico "
                   required=""
                   autofocus />
               </div>
@@ -152,7 +152,7 @@
                 <div class="d-flex justify-content-between">
                   <label class="form-label" for="password">Contraseña</label>
                   <a href="auth-forgot-password-cover.html">
-                    <small>Forgot Password?</small>
+                    <small>Olvidaste tu contraseña?</small>
                   </a>
                 </div>
                 <div class="input-group input-group-merge">
@@ -173,13 +173,13 @@
                   <label class="form-check-label" for="remember-me"> Remember Me </label>
                 </div>
               </div> -->
-              <button type="submit" class="btn btn-primary d-grid w-100">Sign in</button>
+              <button type="submit" class="btn btn-primary d-grid w-100">Iniciar Sesión</button>
             </form>
 
             <p class="text-center">
-              <span>New on our platform?</span>
+              <span>Nuevo usuario?</span>
               <a href="auth-register-cover.html">
-                <span>Create an account</span>
+                <span>Crear una cuenta</span>
               </a>
             </p>
 
