@@ -116,18 +116,14 @@
                 <form id="editUserForm" class="row g-3 mb-4" action="{{ route('vendor.bank') }}" method="post" enctype="multipart/form-data">@csrf
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="bankName">Entidad Bancaria</label>
-                        <select
-                        id="bankName"
-                        name="bankName"
-                        class="select2 form-select"
-                        data-allow-clear="true">
+                        <select id="bankName" name="bankName" class="select2 form-select" data-allow-clear="true">
                             <option value="" disabled>Seleccionar Banco</option>
-                            <option value="Banco Pacifico">Banco Pacifico</option>
-                            <option value="Banco Guayaquil">Banco Guayaquil</option>
-                            <option value="Banco Pichincha">Banco Pichincha</option>
-                            <option value="Banco Bolivariano">Banco Bolivariano</option>
-                            <option value="Banco Internacional">Banco Internacional</option>
-                            <option value="Produbanco">Produbanco</option>
+                            <option value="Banco Pacifico" {{ $adminDetails['bank_name'] == 'Banco Pacifico' ? 'selected' : '' }}>Banco Pacifico</option>
+                            <option value="Banco Guayaquil" {{ $adminDetails['bank_name'] == 'Banco Guayaquil' ? 'selected' : '' }}>Banco Guayaquil</option>
+                            <option value="Banco Pichincha" {{ $adminDetails['bank_name'] == 'Banco Pichincha' ? 'selected' : '' }}>Banco Pichincha</option>
+                            <option value="Banco Bolivariano" {{ $adminDetails['bank_name'] == 'Banco Bolivariano' ? 'selected' : '' }}>Banco Bolivariano</option>
+                            <option value="Banco Internacional" {{ $adminDetails['bank_name'] == 'Banco Internacional' ? 'selected' : '' }}>Banco Internacional</option>
+                            <option value="Produbanco" {{ $adminDetails['bank_name'] == 'Produbanco' ? 'selected' : '' }}>Produbanco</option>
                         </select>
                     </div>
                     <div class="col-12 col-md-6">
@@ -138,8 +134,8 @@
                         class="select2 form-select"
                         data-allow-clear="true">
                             <option value="" disabled>Seleccionar Tipo de Cuenta</option>
-                            <option value="Ahorros">Ahorros</option>
-                            <option value="Corriente">Corriente</option>
+                            <option value="Ahorros" {{ $adminDetails['bank_account_type'] == 'Ahorros' ? 'selected' : '' }}>Ahorros</option>
+                            <option value="Corriente" {{ $adminDetails['bank_account_type'] == 'Corriente' ? 'selected' : ''}}>Corriente</option>
                         </select>
                     </div>
                     <div class="col-12">
