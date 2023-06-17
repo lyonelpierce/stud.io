@@ -103,7 +103,7 @@
             </li>
             @elseif(Auth::guard('vendor')->check())
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('vendor.bank') }}">
+                <a class="nav-link" href="{{ route('vendor.account') }}">
                     <i class="ti ti-user-check ti-xs me-1"></i>Cuenta
                 </a>
             </li>
