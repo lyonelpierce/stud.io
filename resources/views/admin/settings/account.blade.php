@@ -97,16 +97,34 @@
         <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
             <!-- User Pills -->
             <ul class="nav nav-pills flex-column flex-md-row mb-4">
+            @if(Auth::guard('admin')->check())
             <li class="nav-item">
                 <a class="nav-link active" href="javascript:void(0);">
                     <i class="ti ti-user-check ti-xs me-1"></i>Cuenta
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ Auth::guard('admin')->check() ? route('admin.security') : route('vendor.security') }}">
+                <a class="nav-link" href="{{ route('admin.security') }}">
                     <i class="ti ti-lock ti-xs me-1"></i>Seguridad
                 </a>
             </li>
+            @elseif(Auth::guard('vendor')->check())
+            <li class="nav-item">
+                <a class="nav-link active" href="javascript:void(0);">
+                    <i class="ti ti-user-check ti-xs me-1"></i>Cuenta
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('vendor.bank') }}">
+                    <i class="ti ti-building-bank ti-xs me-1"></i>Banco
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('vendor.security') }}">
+                    <i class="ti ti-lock ti-xs me-1"></i>Seguridad
+                </a>
+            </li>
+            @endif
             </ul>
             <!--/ User Pills -->
 

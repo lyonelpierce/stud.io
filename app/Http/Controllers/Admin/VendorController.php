@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Vendor;
 use App\Models\State;
 use App\Models\City;
+use App\Models\VendorsBankDetail;
 use Illuminate\Http\Request;
 use Auth;
 use Hash;
@@ -83,6 +84,43 @@ class VendorController extends Controller
 
         $cities = City::where('state_id', $selectedState['id'])->get()->toArray();
         return view('admin.settings.account')->with(compact('adminDetails', 'states', 'cities'));
+    }
+
+    // Update Vendor Bank Details
+    public function updateVendorBankDetails(Request $request) {
+        if($request->isMethod('post')){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+            $rules = [
+                'bankName' => 'required|regex:/^[\pL\s\-]+$/u',
+                'bankAccountType' => 'required|regex:/^[\pL\s\-]+$/u',
+                'bankAccountName' => 'required|regex:/^[\pL\s\-]+$/u',
+                'bankAccountNumber' => 'required|numeric',
+                'bankDocumentNumber' => 'required|numeric',
+            ];
+
+            $customMessages = [
+                'bankName.required' => 'Nombre del banco es requerido',
+                'bankName.regex' => 'Nombre del banco inválido',
+                'bankAccountType.required' => 'Tipo de cuenta es requerido',
+                'bankAccountType.regex' => 'Tipo de cuenta inválido',
+                'bankAccountName.required' => 'Nombre de la cuenta es requerido',
+                'bankAccountName.regex' => 'Nombre de la cuenta inválido',
+                'bankAccountNumber.required' => 'Número de cuenta es requerido',
+                'bankAccountNumber.numeric' => 'Número de cuenta inválido',
+                'bankDocumentNumber.required' => 'Número de documento es requerido',
+                'bankDocumentNumber.numeric' => 'Número de documento inválido',
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
+            VendorsBankDetail::where('vendor_id', Auth::guard('vendor')->user()->id)->update(['bank_name'=>$data['bankName'], 'bank_account_type'=>$data['bankAccountType'], 'bank_account_name'=>$data['bankAccountName'], 'bank_account_number'=>$data['bankAccountNumber'], 'bank_account_document'=>$data['bankDocumentNumber']]);
+            
+            return redirect()->back()->with('success_message', 'Información Actualizada!');
+        }
+        $adminDetails = VendorsBankDetail::where('vendor_id', Auth::guard('vendor')->user()->id)->first()->toArray();
+
+        return view('admin.settings.bank')->with(compact('adminDetails'));
     }
 
     // Update Vendor Password
