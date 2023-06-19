@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\State;
 use App\Models\City;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Auth;
 use Image;
@@ -32,7 +33,7 @@ class AdminController extends Controller
                 'accountAddress' => 'required',
                 'accountCity' => 'required',
                 'accountState' => 'required',
-                'accountMobile' => 'required|numeric|digits:10',
+                'accountMobile' => 'required|numeric|digits:8',
                 'accountDocument' => 'required|numeric|digits:10'
             ];
 
@@ -49,7 +50,7 @@ class AdminController extends Controller
                 'accountDocument.required' => 'Número de cedula es requerido',
                 'accountDocument.numeric' => 'Número de cedula inválido',
                 'accountDocument.digits' => 'Número de cedula debe contener 10 digitos',
-                'accountMobile.digits' => 'Número de teléfono debe contener 10 digitos'
+                'accountMobile.digits' => 'Número de teléfono debe contener 8 digitos'
             ];
 
             $this->validate($request, $rules, $customMessages);
@@ -128,9 +129,12 @@ class AdminController extends Controller
         return view('admin.settings.security')->with(compact('adminDetails'));
     }
 
-    // Delete Account
-    public function deleteAccount(Request $request){
-        return view('admin.settings.delete')->with(compact('adminDetails'));
+    // User List
+    public function userList()
+    {
+        $tattooers = Vendor::with(['vendorBusinessDetails'])->get()->toArray();
+        // echo "<pre>"; print_r($tattooers); die;
+        return view('admin.users.tattooers')->with(compact('tattooers'));
     }
 
 }

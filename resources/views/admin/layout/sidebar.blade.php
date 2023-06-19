@@ -47,6 +47,19 @@
             <div data-i18n="Dashboard">Tablero</div>
         </a>
     </li>
+    <li class="menu-item{{ Request::routeIs('admin.users.tattooers') ? ' active open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons ti ti-user"></i>
+            <div data-i18n="Users">Usuarios</div>
+        </a>
+        <ul class="menu-sub">
+            <li class="menu-item{{ Request::routeIs('admin.users.tattooers') ? ' active' : '' }}">
+                <a href="{{ route('admin.users.tattooers') }}" class="menu-link">
+                    <div data-i18n="Tattooers">Tatuadores</div>
+                </a>
+            </li>
+        </ul>
+    </li>
     <li class="menu-item{{ Request::routeIs('admin.account') || Request::routeIs('admin.security') ? ' active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ti ti-settings"></i>
