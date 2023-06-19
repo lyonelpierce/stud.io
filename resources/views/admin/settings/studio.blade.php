@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('meta')
-    Ajustes - Cuenta
+    Ajustes - Estudio
 @endsection
 
 @section('content')

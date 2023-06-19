@@ -228,7 +228,7 @@
                             name="accountMobile"
                             value="{{ $adminDetails['mobile'] }}"
                             class="form-control phone-number-mask"
-                            placeholder="8 123 4567" />
+                            placeholder="81234567" />
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
@@ -239,7 +239,7 @@
                             name="accountDocument"
                             value="{{ $adminDetails['document'] }}"
                             class="form-control phone-number-mask"
-                            placeholder="8 123 4567" />
+                            placeholder="0981234567" />
                     </div>
                     <div class="mb-3">
                         <label for="accountImage" class="form-label">Imagen (jpg, jpeg, png)</label>

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
+            $table->string('document');
             $table->string('type');
             $table->string('mobile');
             $table->string('state');

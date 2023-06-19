@@ -32,7 +32,8 @@ class AdminController extends Controller
                 'accountAddress' => 'required',
                 'accountCity' => 'required',
                 'accountState' => 'required',
-                'accountMobile' => 'required|numeric',
+                'accountMobile' => 'required|numeric|digits:10',
+                'accountDocument' => 'required|numeric|digits:10'
             ];
 
             $customMessages = [
@@ -45,6 +46,10 @@ class AdminController extends Controller
                 'accountState.required' => 'Provincia es requerida',
                 'accountMobile.required' => 'Número de teléfono es requerido',
                 'accountMobile.numeric' => 'Número de teléfono inválido',
+                'accountDocument.required' => 'Número de cedula es requerido',
+                'accountDocument.numeric' => 'Número de cedula inválido',
+                'accountDocument.digits' => 'Número de cedula debe contener 10 digitos',
+                'accountMobile.digits' => 'Número de teléfono debe contener 10 digitos'
             ];
 
             $this->validate($request, $rules, $customMessages);
@@ -74,7 +79,7 @@ class AdminController extends Controller
                 $imageName = "";
             }
 
-            Admin::where('id', Auth::guard('admin')->user()->id)->update(['firstname'=>$data['accountFirstName'], 'lastname'=>$data['accountLastName'], 'address'=>$data['accountAddress'], 'city'=>$data['accountCity'], 'state'=>$data['accountState'], 'mobile'=>$data['accountMobile'], 'image'=>$imageName]);
+            Admin::where('id', Auth::guard('admin')->user()->id)->update(['firstname'=>$data['accountFirstName'], 'lastname'=>$data['accountLastName'], 'address'=>$data['accountAddress'], 'city'=>$data['accountCity'], 'state'=>$data['accountState'], 'mobile'=>$data['accountMobile'], 'image'=>$imageName, 'document'=>$data['accountDocument']]);
 
             return redirect()->back()->with('success_message', 'Información Actualizada!');
         }
