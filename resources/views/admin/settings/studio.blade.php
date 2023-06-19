@@ -9,7 +9,7 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Ajustes /</span> Cuenta</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Ajustes /</span> Estudio</h4>
         <div class="row">
         <!-- User Sidebar -->
         <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
@@ -18,10 +18,9 @@
             <div class="card-body">
                 <div class="user-avatar-section">
                 <div class="d-flex align-items-center flex-column">
-                    
-                    @if (!empty($adminDetails['image']))
+                    @if (!empty($adminDetails['studio_logo']))
                         <img class="img-fluid rounded mb-3 pt-1 mt-4"
-                            src="{{ Auth::guard('admin')->check() ? url('admin/images/photos/'.$adminDetails['image']) : url('vendor/images/photos/'.$adminDetails['image']) }}"
+                            src="{{ url('vendor/images/logos/'.$adminDetails['studio_logo']) }}"
                             height="100"
                             width="100"
                             alt="User avatar">
@@ -31,11 +30,8 @@
                             height="100"
                             width="100"
                             alt="User avatar">
-                    @endif
-
-                    <div class="user-info text-center">
-                    <h4 class="mb-2">{{ $adminDetails['firstname']. ' ' .$adminDetails['lastname'] }}</h4>
-                    <span class="badge bg-label-success mt-1">{{ $adminDetails['type'] }}</span>
+                    @endif                    <div class="user-info text-center">
+                    <h4 class="mb-2">{{ $adminDetails['studio_name'] }}</h4>
                     </div>
                 </div>
                 </div>
@@ -59,28 +55,16 @@
                 <div class="info-container">
                 <ul class="list-unstyled">
                     <li class="mb-2 pt-1">
-                        <span class="fw-semibold me-1">Email:</span>
-                        <span>{{ $adminDetails['email'] }}</span>
-                    </li>
-                    <!-- <li class="mb-2 pt-1">
-                        <span class="fw-semibold me-1">Status:</span>
-                        <span class="badge bg-label-success">Active</span>
-                    </li> -->
-                    <li class="mb-2 pt-1">
-                        <span class="fw-semibold me-1">Teléfono:</span>
-                        <span>09-{{ $adminDetails['mobile']}}</span>
-                    </li>
-                    <li class="mb-2 pt-1">
                         <span class="fw-semibold me-1">Provincia:</span>
-                        <span>{{ $adminDetails['state']}}</span>
+                        <span>{{ $adminDetails['studio_state'] }}</span>
                     </li>
                     <li class="mb-2 pt-1">
                         <span class="fw-semibold me-1">Ciudad:</span>
-                        <span>{{ $adminDetails['city']}}</span>
+                        <span>{{ $adminDetails['studio_city'] }}</span>
                     </li>
-                    <li class="pt-1">
+                    <li class="mb-2 pt-1">
                         <span class="fw-semibold me-1">Dirección:</span>
-                        <span>{{ $adminDetails['address']}}</span>
+                        <span>{{ $adminDetails['studio_address'] }}</span>
                     </li>
                 </ul>
                 <!-- <div class="d-flex justify-content-center">
@@ -97,25 +81,13 @@
         <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1">
             <!-- User Pills -->
             <ul class="nav nav-pills flex-column flex-md-row mb-4">
-            @if(Auth::guard('admin')->check())
             <li class="nav-item">
-                <a class="nav-link active" href="javascript:void(0);">
+                <a class="nav-link" href="{{ route('vendor.account') }}">
                     <i class="ti ti-user-check ti-xs me-1"></i>Cuenta
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.security') }}">
-                    <i class="ti ti-lock ti-xs me-1"></i>Seguridad
-                </a>
-            </li>
-            @elseif(Auth::guard('vendor')->check())
-            <li class="nav-item">
                 <a class="nav-link active" href="javascript:void(0);">
-                    <i class="ti ti-user-check ti-xs me-1"></i>Cuenta
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('vendor.studio') }}">
                     <i class="ti ti-ballpen ti-xs me-1"></i>Estudio
                 </a>
             </li>
@@ -129,13 +101,12 @@
                     <i class="ti ti-lock ti-xs me-1"></i>Seguridad
                 </a>
             </li>
-            @endif
             </ul>
             <!--/ User Pills -->
 
             <!-- Activity Timeline -->
             <div class="card mb-4">
-            <h5 class="card-header">Actualizar Información Personal</h5>
+            <h5 class="card-header">Actualizar Información del Estudio</h5>
             <div class="card-body pb-0">
             @if(Session::has('success_message'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -157,92 +128,95 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-                <form id="editUserForm" class="row g-3 mb-4" action="{{ Auth::guard('admin')->check() ? url('admin/account') : url('vendor/account') }}" method="post" enctype="multipart/form-data">@csrf
-                    <div class="col-12 col-md-6">
-                        <label class="form-label" for="accountFirstName">Nombre</label>
+            <form id="newStudioForm" class="row g-3 mb-4" action="{{ url('vendor/studio') }}" method="post" enctype="multipart/form-data">@csrf
+                    <div class="col-12">
+                        <label class="form-label" for="studioName">Nombre</label>
                         <input
                         type="text"
-                        id="accountFirstName"
-                        name="accountFirstName"
+                        id="studioName"
+                        name="studioName"
                         class="form-control"
-                        value="{{ $adminDetails['firstname'] }}"
+                        value="{{ $adminDetails['studio_name'] }}"
                         placeholder="John" />
                     </div>
-                    <div class="col-12 col-md-6">
-                        <label class="form-label" for="accountLastName">Apellido</label>
-                        <input
-                        type="text"
-                        id="accountLastName"
-                        name="accountLastName"
-                        class="form-control"
-                        value="{{ $adminDetails['lastname'] }}"
-                        placeholder="Doe" />
-                    </div>
                     <div class='col-12'>
-                        <label class="form-label" for="accountDescription">Descripción (Opcional)</label>
-                        <textarea class="form-control" id="accountDescription" name="accountDescription" rows="3"></textarea>
+                        <label class="form-label" for="studioDescription">Descripción (Opcional)</label>
+                        <textarea class="form-control" id="studioDescription" name="studioDescription" rows="3"></textarea>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label class="form-label" for="accountState">Provincia</label>
+                        <label class="form-label" for="studioState">Provincia</label>
                         <select
-                        id="accountState"
-                        name="accountState"
+                        id="studioState"
+                        name="studioState"
                         class="select2 form-select"
                         data-allow-clear="true">
                         <option value="" disabled>Seleccionar Provincia</option>
                         @foreach($states as $state)
-                            <option value="{{ $state['name'] }}" @if($state['name'] == $adminDetails['state']) selected @endif>{{ $state['name'] }}</option>
+                            <option value="{{ $state['name'] }}" @if($state['name'] == $adminDetails['studio_state']) selected @endif>{{ $state['name'] }}</option>
                         @endforeach
                         </select>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label class="form-label" for="accountCity">Ciudad</label>
+                        <label class="form-label" for="studioCity">Ciudad</label>
                         <select
-                        id="accountCity"
-                        name="accountCity"
+                        id="studioCity"
+                        name="studioCity"
                         class="select2 form-select"
                         data-allow-clear="true">
                         <option value="" disabled>Seleccionar Ciudad</option>
                         @foreach($cities as $city)
-                            <option value="{{ $city['name'] }}" @if($city['name'] == $adminDetails['city']) selected @endif >{{ $city['name'] }}</option>
+                            <option value="{{ $city['name'] }}" @if($city['name'] == $adminDetails['studio_city']) selected @endif >{{ $city['name'] }}</option>
                         @endforeach
                         </select>
                     </div>
                     <div class="col-12">
-                        <label class="form-label" for="accountAddress">Dirección</label>
+                        <label class="form-label" for="studioAddress">Dirección</label>
                         <input
                         type="text"
-                        id="accountAddress"
-                        name="accountAddress"
+                        id="studioAddress"
+                        name="studioAddress"
                         class="form-control"
-                        value="{{ $adminDetails['address'] }}"
+                        value="{{ $adminDetails['studio_address'] }}"
                         placeholder="Cdla. La Alborada..." />
                     </div>
                     <div class="col-12 col-md-6">
-                        <label class="form-label" for="accountMobile">Teléfono</label>
+                        <label class="form-label" for="studioMobile">Teléfono</label>
                         <div class="input-group">
-                        <span class="input-group-text">09</span>
-                        <input
+                            <span class="input-group-text">09</span>
+                            <input
                             type="text"
-                            id="accountMobile"
-                            name="accountMobile"
-                            value="{{ $adminDetails['mobile'] }}"
+                            id="studioMobile"
+                            name="studioMobile"
+                            value="{{ $adminDetails['studio_mobile'] }}"
                             class="form-control phone-number-mask"
-                            placeholder="8 123 4567" />
+                            placeholder="81234567" />
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label class="form-label" for="accountDocument">Cedula</label>
-                        <input
+                        <label class="form-label" for="studioRuc">RUC (Opcional)</label>
+                        <div class="input-group">
+                            <input
                             type="text"
-                            id="accountDocument"
-                            name="accountDocument"
-                            value="{{ $adminDetails['document'] }}"
+                            id="studioRuc"
+                            name="studioRuc"
+                            value="{{ $adminDetails['studio_ruc'] }}"
                             class="form-control phone-number-mask"
-                            placeholder="8 123 4567" />
+                            placeholder="0912345678" />
+                            <span class="input-group-text">001</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="studioWebsite">Website (Opcional)</label>
+                        <input
+                        type="text"
+                        id="studioWebsite"
+                        name="studioWebsite"
+                        class="form-control"
+                        value="{{ $adminDetails['studio_website'] }}"
+                        placeholder="http://mistudio.com/" />
                     </div>
                     <div class="mb-3">
-                        <label for="accountImage" class="form-label">Imagen (jpg, jpeg, png)</label>
+                        <label for="accountImage" class="form-label">Logo (jpg, jpeg, png)</label>
                         <input class="form-control" type="file" id="accountImage" name="accountImage"/>
                         @if(!empty(Auth::guard('vendor')->user()->image))
                             <input type="hidden" name="currentAdminImage" value="{{ Auth::guard('vendor')->user()->image }}">
@@ -252,6 +226,16 @@
                         <button type="submit" class="btn btn-primary mt-2 me-sm-3 me-1">Actualizar</button>
                     </div>
                 </form>
+                <!-- <form id="joinStudioForm" class="row g-3 mb-4" action="{{ url('vendor/joinstudio') }}" method="post">@csrf
+                    <div class="col-12 mb-4">
+                        <label for="TagifyUserList" class="form-label">Buscar Estudio</label>
+                        <input
+                        id="TagifyUserList"
+                        name="TagifyUserList"
+                        class="form-control"
+                        value="abatisse2@nih.gov, Justinian Hattersley" />
+                    </div>
+                </form> -->
             </div>
             </div>
             <!-- /Activity Timeline -->
@@ -267,4 +251,5 @@
 </div>
 
 <script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
+
 @endsection

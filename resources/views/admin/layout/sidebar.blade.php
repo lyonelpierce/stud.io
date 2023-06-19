@@ -72,7 +72,7 @@
                 <div data-i18n="Dashboard">Tablero</div>
             </a>
         </li>
-        <li class="menu-item{{ Request::routeIs('vendor.account') || Request::routeIs('vendor.bank') || Request::routeIs('vendor.security') ? ' active open' : '' }}">
+        <li class="menu-item{{ Request::routeIs('vendor.account') || Request::routeIs('vendor.bank') || Request::routeIs('vendor.studio') || Request::routeIs('vendor.security') ? ' active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ti ti-settings"></i>
             <div data-i18n="Settings">Ajustes</div>
@@ -81,6 +81,11 @@
             <li class="menu-item{{ Request::routeIs('vendor.account') ? ' active' : '' }}">
                 <a href="{{ route('vendor.account') }}" class="menu-link">
                     <div data-i18n="Account">Cuenta</div>
+                </a>
+            </li>
+            <li class="menu-item{{ Request::routeIs('vendor.studio') ? ' active' : '' }}">
+                <a href="{{ route('vendor.studio') }}" class="menu-link">
+                    <div data-i18n="Studio">Estudio</div>
                 </a>
             </li>
             <li class="menu-item{{ Request::routeIs('vendor.bank') ? ' active' : '' }}">

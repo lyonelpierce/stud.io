@@ -108,6 +108,11 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('vendor.studio') }}">
+                    <i class="ti ti-ballpen ti-xs me-1"></i>Estudio
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('vendor.bank') }}">
                     <i class="ti ti-building-bank ti-xs me-1"></i>Banco
                 </a>
@@ -182,7 +187,8 @@
                 
             </div>
         </div>
-        <!-- <div class="card mb-4">
+        @if(Auth::guard('vendor')->check())
+        <div class="card mb-4">
             <h5 class="card-header">Eliminar Cuenta</h5>
             <div class="card-body pb-0">
                 <p>Los datos de tu cuenta seran eliminados de forma permanente y no podran ser recuperados.</p>
@@ -190,7 +196,8 @@
                     <a href="javascript:;" class="btn btn-label-danger suspend-user">Eliminar Cuenta</a>
                 </div>
             </div>
-        </div> -->
+        </div>
+        @endif
             <!-- /Activity Timeline -->
 
         </div>

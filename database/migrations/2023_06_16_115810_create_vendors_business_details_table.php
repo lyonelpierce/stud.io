@@ -15,12 +15,14 @@ return new class extends Migration
             $table->id();
             $table->integer('vendor_id');
             $table->string('studio_name');
+            $table->string('studio_description');
             $table->string('studio_address');
             $table->string('studio_city');
             $table->string('studio_state');
             $table->string('studio_mobile');
             $table->string('studio_website');
             $table->string('studio_ruc');
+            $table->string('studio_logo');
             $table->timestamps();
         });
     }

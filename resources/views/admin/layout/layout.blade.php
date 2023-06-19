@@ -12,6 +12,7 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+      <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>@yield('meta') | Stud.io</title>
 
@@ -37,7 +38,7 @@
     <link rel="stylesheet" href="{{ url('/admin/assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ url('/admin/assets/css/demo.css') }}" />
     <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/select2/select2.css') }}" />
-
+    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/tagify/tagify.css') }}" />
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
@@ -106,7 +107,6 @@
     <script src="{{ url('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
     <script src="{{ url('/admin/assets/vendor/libs/node-waves/node-waves.js') }}"></script>
     <script src="{{ url('/admin/assets/vendor/libs/select2/select2.js') }}"></script>
-
 
     <script src="{{ url('/admin/assets/vendor/libs/hammer/hammer.js') }}"></script>
 
