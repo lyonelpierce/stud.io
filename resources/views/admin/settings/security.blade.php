@@ -193,7 +193,10 @@
             <div class="card-body pb-0">
                 <p>Los datos de tu cuenta seran eliminados de forma permanente y no podran ser recuperados.</p>
                 <div class="d-flex mb-4">
-                    <a href="javascript:;" class="btn btn-label-danger suspend-user">Eliminar Cuenta</a>
+                <form action="{{ route('vendor.delete', ['id' => Auth::guard('vendor')->user()->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this vendor and its associated details?');">
+                @csrf
+                @method('DELETE')
+                    <button type="submit" class="btn btn-label-danger suspend-user">Eliminar Cuenta</button></form>
                 </div>
             </div>
         </div>

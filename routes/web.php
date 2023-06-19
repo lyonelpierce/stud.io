@@ -54,6 +54,6 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get', 'post'], 'vendor/studio', 'VendorController@updateVendorStudioDetails')->name('vendor.studio');
         Route::match(['get', 'post'], 'vendor/security', 'VendorController@updateVendorPassword')->name('vendor.security');
         Route::match(['get', 'post'], 'vendor/bank', 'VendorController@updateVendorBankDetails')->name('vendor.bank');
-        Route::post('vendor/newStudio', 'VendorController@newStudio')->name('vendor.newStudio');
+        Route::delete('vendor/delete/{id}', 'VendorController@deleteVendorAccount')->name('vendor.delete');
     });
 });

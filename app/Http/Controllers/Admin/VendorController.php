@@ -237,4 +237,24 @@ class VendorController extends Controller
         $adminDetails = Vendor::where('email', Auth::guard('vendor')->user()->email)->first()->toArray();
         return view('admin.settings.security')->with(compact('adminDetails'));
     }
+
+    // Delete Vendor
+    public function deleteVendorAccount($vendorId) {
+        if(Auth::guard('vendor')->user()->id == $vendorId){
+            $vendor = Vendor::with(['vendorBankDetails', 'vendorBusinessDetails'])->find($vendorId);
+    
+            if (!$vendor) {
+                // Vendor not found, handle error accordingly
+                return redirect()->back()->with('error', 'Cuenta no encontrada!');
+            }
+            
+            // Delete the vendorBankDetails and vendorBusinessDetails along with the vendor
+            $vendor->vendorBankDetails()->delete();
+            $vendor->vendorBusinessDetails()->delete();
+            $vendor->delete();
+            
+            return redirect('login');
+        }
+        return redirect()->back()->with('error', 'Cuenta no encontrada!');
+    }
 }
