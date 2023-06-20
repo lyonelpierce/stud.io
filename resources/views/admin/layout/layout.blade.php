@@ -43,6 +43,7 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/node-waves/node-waves.css') }}" />
+    @yield('css')
 
     <!-- Page CSS -->
 
@@ -114,7 +115,7 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-
+    @yield('js')
     <!-- Main JS -->
     <script src="{{ url('/admin/assets/js/main.js') }}"></script>
 

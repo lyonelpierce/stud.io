@@ -4,7 +4,13 @@
     Ajustes - Cuenta
 @endsection
 
+@section('css')
+<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+@endsection
+
 @section('content')
+
 <div class="content-wrapper">
     <!-- Content -->
 
@@ -14,7 +20,7 @@
         <!-- DataTable with Buttons -->
         <div class="card">
         <div class="card-datatable table-responsive pt-0">
-            <table class="datatables-basic table">
+            <table id="usersTable" class="datatables-basic table">
             <thead>
                 <tr>
                     <th>id</th>
@@ -41,7 +47,7 @@
                                 </div>
                             </div>
                             <div class="d-flex flex-column">
-                                <span class="emp_name text-truncate">{{ $tattooer['firstname'] }}{{ $tattooer['lastname'] }}</span>
+                                <span class="emp_name text-truncate">{{ $tattooer['firstname'] }} {{ $tattooer['lastname'] }}</span>
                                 <small class="emp_post text-truncate text-muted">{{ $tattooer['state'] }} -> {{ $tattooer['city'] }} -> {{ $tattooer['address'] }}</small>
                         </div>
                     </div>
@@ -168,8 +174,11 @@
     <div class="content-backdrop fade"></div>
 </div>
 
+@endsection
+
+@section('js')
 <script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
 <script src="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
 
-
+<script src="{{ url('/admin/assets/js/tables-datatables-basic.js') }}"></script>
 @endsection
