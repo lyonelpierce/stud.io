@@ -138,15 +138,12 @@ class AdminController extends Controller
     }
 
     // User Status
-    public function userStatus($id)
+    public function userStatus(Request $request)
     {
-        $user = Vendor::where('id', $id)->first()->toArray();
-        if($user['status'] == 1){
-            Vendor::where('id', $id)->update(['status'=>0]);
-        } else{
-            Vendor::where('id', $id)->update(['status'=>1]);
+        if($request->ajax()){
+            $data = $request->all();
+            Vendor::where('id', $data['userId'])->update(['status'=>$data['status']]);
         }
-        return view('admin.users.tattooers')->with(compact('user'));
     }
 
 }

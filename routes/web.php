@@ -46,7 +46,7 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get', 'post'], 'admin/account', 'AdminController@updateAdminDetails')->name('admin.account');
         Route::match(['get', 'post'], 'admin/security', 'AdminController@updateAdminPassword')->name('admin.security');
         Route::match(['get', 'post'], 'admin/users/tattooers', 'AdminController@userList')->name('admin.users.tattooers');
-        Route::get('admin/users/tattooers/{id}', 'AdminController@userStatus')->name('admin.users.tattooers.details');
+        Route::post('admin/users/userStatus', 'AdminController@userStatus')->name('admin.users.tattooers.status');
     });
 
     // Vendor Dashboard
