@@ -132,8 +132,7 @@ class AdminController extends Controller
     // User List
     public function userList()
     {
-        $tattooers = Vendor::with(['vendorBusinessDetails'])->get()->toArray();
-        // echo "<pre>"; print_r($tattooers); die;
+        $tattooers = Vendor::with(['vendorBusinessDetails', 'vendorBankDetails'])->get()->toArray();
         return view('admin.users.tattooers')->with(compact('tattooers'));
     }
 
@@ -145,5 +144,7 @@ class AdminController extends Controller
             Vendor::where('id', $data['userId'])->update(['status'=>$data['status']]);
         }
     }
+
+    // Delete Vendor
 
 }
