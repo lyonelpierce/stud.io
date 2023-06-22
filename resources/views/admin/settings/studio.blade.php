@@ -4,6 +4,9 @@
     Ajustes - Estudio
 @endsection
 
+@section('css')
+@endsection
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content -->
@@ -226,16 +229,6 @@
                         <button type="submit" class="btn btn-primary mt-2 me-sm-3 me-1">Actualizar</button>
                     </div>
                 </form>
-                <!-- <form id="joinStudioForm" class="row g-3 mb-4" action="{{ url('vendor/joinstudio') }}" method="post">@csrf
-                    <div class="col-12 mb-4">
-                        <label for="TagifyUserList" class="form-label">Buscar Estudio</label>
-                        <input
-                        id="TagifyUserList"
-                        name="TagifyUserList"
-                        class="form-control"
-                        value="abatisse2@nih.gov, Justinian Hattersley" />
-                    </div>
-                </form> -->
             </div>
             </div>
             <!-- /Activity Timeline -->
@@ -250,6 +243,10 @@
     <div class="content-backdrop fade"></div>
 </div>
 
-<script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
 
+@endsection
+
+@section('js')
+<script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
+<!-- <script src="{{ url('/admin/assets/customjs/settingsStudio.js') }}"></script> -->
 @endsection

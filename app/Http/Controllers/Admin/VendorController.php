@@ -151,7 +151,7 @@ class VendorController extends Controller
 
             return redirect()->back()->with('success_message', 'Información Actualizada!');
         }
-
+        
         $adminDetails = VendorsBusinessDetail::where('vendor_id', Auth::guard('vendor')->user()->id)->first()->toArray();
 
         $states = State::get()->toArray();

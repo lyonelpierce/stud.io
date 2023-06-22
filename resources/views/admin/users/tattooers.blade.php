@@ -19,7 +19,10 @@
 
         <!-- DataTable with Buttons -->
         <div class="card">
-        <div class="card-datatable table-responsive pt-0">
+            <div class="card-datatable table-responsive pt-0">
+            <div class="head-label pt-4 ps-3 pb-3">
+                <h5 class="card-title mb-0">Lista de Tatuadores</h5>
+            </div>
             <table id="usersTable" class="datatables-basic table">
             <thead>
                 <tr>
@@ -34,6 +37,7 @@
             </thead>
             <tbody>
                 @foreach ($tattooers as $tattooer)
+                <tr>
                     <td>{{ $tattooer['id'] }}</td>
                     <td>
                         <div class="d-flex justify-content-start align-items-center user-name">
@@ -64,9 +68,6 @@
                     </td>
                     <td>
                         <a href="javascript:;" class="btn-sm btn-item item-edit">
-                            <i class="text-primary ti ti-user-check me-2"></i>
-                        </a>
-                        <a href="javascript:;" class="btn-sm btn-item item-edit">
                             <i class="text-primary ti ti-search me-2"></i>
                         </a>
                         <a href="javascript:;" class="btn-sm btn-item item-edit">
@@ -74,6 +75,7 @@
                         </a>
                     </td>
                 @endforeach
+                </tr>
             </tbody>
             </table>
         </div>

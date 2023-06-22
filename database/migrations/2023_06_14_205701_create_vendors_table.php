@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('document');
             $table->string('email')->unique();
             $table->string('password');
+            $table->tinyInteger('studio_id');
             $table->tinyInteger('status');
             $table->timestamps();
         });

@@ -137,4 +137,16 @@ class AdminController extends Controller
         return view('admin.users.tattooers')->with(compact('tattooers'));
     }
 
+    // User Status
+    public function userStatus($id)
+    {
+        $user = Vendor::where('id', $id)->first()->toArray();
+        if($user['status'] == 1){
+            Vendor::where('id', $id)->update(['status'=>0]);
+        } else{
+            Vendor::where('id', $id)->update(['status'=>1]);
+        }
+        return view('admin.users.tattooers')->with(compact('user'));
+    }
+
 }
