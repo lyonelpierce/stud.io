@@ -47,6 +47,7 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get', 'post'], 'admin/security', 'AdminController@updateAdminPassword')->name('admin.security');
         Route::match(['get', 'post'], 'admin/users/tattooers', 'AdminController@userList')->name('admin.users.tattooers');
         Route::post('admin/users/userStatus', 'AdminController@userStatus')->name('admin.users.tattooers.status');
+        Route::post('admin/users/userDelete', 'AdminController@userDelete')->name('admin.users.tattooers.delete');
     });
 
     // Vendor Dashboard

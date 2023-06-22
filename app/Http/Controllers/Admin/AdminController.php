@@ -146,5 +146,23 @@ class AdminController extends Controller
     }
 
     // Delete Vendor
+    public function userDelete(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->all();
+            $vendor = Vendor::with(['vendorBankDetails', 'vendorBusinessDetails'])->find($data['userId']);
 
+            if (!$vendor) {
+                // Vendor not found, handle error accordingly
+                return redirect()->back()->with('error', 'Cuenta no encontrada!');
+            }
+            
+            // Delete the vendorBankDetails and vendorBusinessDetails along with the vendor
+            $vendor->vendorBankDetails()->delete();
+            $vendor->vendorBusinessDetails()->delete();
+            $vendor->delete();
+            
+            return response()->json(['success_message' => 'Usuario eliminado!']);
+        }
+        return response()->json(['error_message' => 'An error occurred during the deletion.']);
+    }
 }

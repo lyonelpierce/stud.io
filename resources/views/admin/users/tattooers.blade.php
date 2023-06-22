@@ -7,6 +7,8 @@
 @section('css')
 <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
 <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/animate-css/animate.css') }}" />
+<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 @endsection
 
 @section('content')
@@ -23,6 +25,18 @@
             <div class="head-label pt-4 ps-3 pb-3">
                 <h5 class="card-title mb-0">Lista de Tatuadores</h5>
             </div>
+            @if(Session::has('success_message'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ Session::get('success_message') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            @if(Session::has('error_message'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              {{ Session::get('error_message') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
             <table id="usersTable" class="datatables-basic table">
             <thead>
                 <tr>
@@ -72,7 +86,7 @@
                         <a href="javascript:;" class="btn-sm btn-item item-edit" data-bs-toggle="modal" data-bs-target="#user-{{ $tattooer['id'] }}Info">
                             <i class="text-primary ti ti-search me-2"></i>
                         </a>
-                        <a href="javascript:;" class="btn-sm btn-item item-edit">
+                        <a href="javascript:;" class="btn-sm btn-item item-delete" userId="{{ $tattooer['id'] }}">
                             <i class="ti ti-trash text-danger"></i>
                         </a>
                     </td>
@@ -238,6 +252,7 @@
 @section('js')
 <script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
 <script src="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+<script src="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
 <script src="{{ url('/admin/assets/js/tables-datatables-basic.js') }}"></script>
 @endsection
