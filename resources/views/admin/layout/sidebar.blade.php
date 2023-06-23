@@ -50,7 +50,7 @@
     <li class="menu-item{{ Request::routeIs('admin.categories') ? ' active' : '' }}">
         <a href="{{ route('admin.categories') }}" class="menu-link">
             <i class="menu-icon tf-icons ti ti-category"></i>
-            <div data-i18n="Categories">Categorias</div>
+            <div data-i18n="Categories">Categorías</div>
         </a>
     </li>
     <li class="menu-item{{ Request::routeIs('admin.users.tattooers') ? ' active open' : '' }}">

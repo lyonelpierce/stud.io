@@ -7,9 +7,7 @@ $(function () {
         dt_basic;
 
     if (dt_basic_table.length) {
-        dt_basic = dt_basic_table.DataTable({
-            pageLength: 25,
-        });
+        dt_basic = dt_basic_table.DataTable();
     }
 });
 
