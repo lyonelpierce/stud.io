@@ -7,6 +7,7 @@ use App\Models\Admin;
 use App\Models\State;
 use App\Models\City;
 use App\Models\Vendor;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Auth;
 use Image;
@@ -147,7 +148,7 @@ class AdminController extends Controller
 
     // Delete Vendor
     public function userDelete(Request $request){
-        if($request->isMethod('post')){
+        if($request->ajax()){
             $data = $request->all();
             $vendor = Vendor::with(['vendorBankDetails', 'vendorBusinessDetails'])->find($data['userId']);
 
@@ -163,6 +164,13 @@ class AdminController extends Controller
             
             return response()->json(['success_message' => 'Usuario eliminado!']);
         }
-        return response()->json(['error_message' => 'An error occurred during the deletion.']);
+        return redirect()->back()->with('error_message', 'Cuenta no encontrada!');
+    }
+
+    // Category List
+    public function categoryList()
+    {
+        $categories = Category::get()->toArray();
+        return view('admin.categories.categories')->with(compact('categories'));
     }
 }

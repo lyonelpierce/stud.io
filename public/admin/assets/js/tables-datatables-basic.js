@@ -52,8 +52,8 @@ $(document).on("click", ".item-delete", function () {
                         "content"
                     ),
                 },
-                type: "POST",
-                url: "/admin/users/userDelete",
+                type: "DELETE",
+                url: "/admin/users/userDelete/" + userId,
                 data: { userId: userId },
                 success: function (response) {
                     window.location.reload();

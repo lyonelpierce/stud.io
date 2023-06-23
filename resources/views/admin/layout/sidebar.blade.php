@@ -47,6 +47,12 @@
             <div data-i18n="Dashboard">Tablero</div>
         </a>
     </li>
+    <li class="menu-item{{ Request::routeIs('admin.categories') ? ' active' : '' }}">
+        <a href="{{ route('admin.categories') }}" class="menu-link">
+            <i class="menu-icon tf-icons ti ti-category"></i>
+            <div data-i18n="Categories">Categorias</div>
+        </a>
+    </li>
     <li class="menu-item{{ Request::routeIs('admin.users.tattooers') ? ' active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ti ti-user"></i>
