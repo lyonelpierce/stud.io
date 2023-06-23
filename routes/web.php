@@ -45,10 +45,14 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::get('admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
         Route::match(['get', 'post'], 'admin/account', 'AdminController@updateAdminDetails')->name('admin.account');
         Route::match(['get', 'post'], 'admin/security', 'AdminController@updateAdminPassword')->name('admin.security');
+
         Route::match(['get', 'post'], 'admin/users/tattooers', 'AdminController@userList')->name('admin.users.tattooers');
-        Route::match(['get', 'post'], 'admin/categories', 'AdminController@categoryList')->name('admin.categories');
         Route::post('admin/users/userStatus', 'AdminController@userStatus')->name('admin.users.tattooers.status');
         Route::delete('admin/users/userDelete/{userId}', 'AdminController@userDelete')->name('admin.users.tattooers.delete');
+        
+        Route::match(['get', 'post'], 'admin/categories', 'AdminController@categoryList')->name('admin.categories');
+        Route::post('admin/categories/categoryStatus', 'AdminController@categoryStatus')->name('admin.categories.status');
+        Route::delete('admin/categories/categoryDelete/{categoryId}', 'AdminController@categoryDelete')->name('admin.categories.delete');
     });
 
     // Vendor Dashboard

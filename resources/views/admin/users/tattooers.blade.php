@@ -254,5 +254,5 @@
 <script src="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
 <script src="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
-<script src="{{ url('/admin/assets/js/tables-datatables-basic.js') }}"></script>
+<script src="{{ url('/admin/assets/customjs/usersList.js') }}"></script>
 @endsection

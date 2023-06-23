@@ -53,7 +53,7 @@
                     <td>{{ $category['name'] }}</td>
                     <td>
                         <label class="switch">
-                        <input type="checkbox" class="switch-input" userId="{{ $category['id'] }}" {{ $category['status'] === 1 ? 'checked' : '' }}>
+                        <input type="checkbox" class="switch-input" categoryId="{{ $category['id'] }}" {{ $category['status'] === 1 ? 'checked' : '' }}>
                             <span class="switch-toggle-slider">
                                 <span class="switch-on"></span>
                                 <span class="switch-off"></span>
@@ -61,7 +61,7 @@
                         </label>
                     </td>
                     <td>
-                        <a href="javascript:;" class="btn-sm btn-item item-delete" userId="{{ $category['id'] }}">
+                        <a href="javascript:;" class="btn-sm btn-item item-delete" categoryId="{{ $category['id'] }}">
                             <i class="ti ti-trash text-danger"></i>
                         </a>
                     </td>
@@ -86,5 +86,5 @@
 <script src="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
 <script src="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
-<script src="{{ url('/admin/assets/js/tables-datatables-basic.js') }}"></script>
+<script src="{{ url('/admin/assets/customjs/categoriesList.js') }}"></script>
 @endsection

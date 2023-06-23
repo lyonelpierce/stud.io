@@ -152,11 +152,6 @@ class AdminController extends Controller
             $data = $request->all();
             $vendor = Vendor::with(['vendorBankDetails', 'vendorBusinessDetails'])->find($data['userId']);
 
-            if (!$vendor) {
-                // Vendor not found, handle error accordingly
-                return redirect()->back()->with('error', 'Cuenta no encontrada!');
-            }
-            
             // Delete the vendorBankDetails and vendorBusinessDetails along with the vendor
             $vendor->vendorBankDetails()->delete();
             $vendor->vendorBusinessDetails()->delete();
@@ -164,7 +159,7 @@ class AdminController extends Controller
             
             return response()->json(['success_message' => 'Usuario eliminado!']);
         }
-        return redirect()->back()->with('error_message', 'Cuenta no encontrada!');
+        return response()->json(['error_message' => 'Cuenta no encontrada!']);
     }
 
     // Category List
@@ -172,5 +167,27 @@ class AdminController extends Controller
     {
         $categories = Category::get()->toArray();
         return view('admin.categories.categories')->with(compact('categories'));
+    }
+
+    // Category Status
+    public function categoryStatus(Request $request)
+    {
+        if($request->ajax()){
+            $data = $request->all();
+            Category::where('id', $data['categoryId'])->update(['status'=>$data['status']]);
+        }
+    }
+
+    // Delete Category
+    public function categoryDelete(Request $request){
+        if($request->ajax()){
+            $data = $request->all();
+            $category = Category::find($data['categoryId']);
+
+            // Delete the category
+            $category->delete();
+            return response()->json(['success_message' => 'Categoría eliminada!']);
+        }
+        return response()->json(['error_message' => 'Categoría no encontrada!']);
     }
 }

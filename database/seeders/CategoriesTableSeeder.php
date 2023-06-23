@@ -31,5 +31,6 @@ class CategoriesTableSeeder extends Seeder
             ['name'=>'Escrito', 'status'=>1],
             ['name'=>'Geometricos', 'status'=>1],
         ];
+        Category::insert($categoryRecords);
     }
 }
