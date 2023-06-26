@@ -24,7 +24,7 @@
             <div class="card-datatable table-responsive pt-0">
             <div class="head-label py-4 px-3 d-flex justify-content-between">
                 <h5 class="card-title mb-0">Lista de Categorías</h5>
-                <button class="btn btn-secondary create-new btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal" tabindex="0" type="button">
+                <button class="btn btn-secondary create-new btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addCategorySidebar" tabindex="0" type="button">
                     <span>
                         <i class="ti ti-plus me-sm-1"></i>
                         <span class="d-none d-sm-inline-block">Nueva Categoría</span>
@@ -40,6 +40,14 @@
             @if(Session::has('error_message'))
             <div class="alert alert-danger alert-dismissible fade show ps-3 pe-3" role="alert">
               {{ Session::get('error_message') }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            @if($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
@@ -95,21 +103,39 @@
             </table>
         </div>
         </div>
-        <!--/ DataTable with Buttons -->
 
-        <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Nueva Categoría</h5>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-                </div>
+
+
+        <div
+        class="offcanvas offcanvas-end event-sidebar"
+        tabindex="-1"
+        id="addCategorySidebar"
+        aria-labelledby="addCategorySidebarLabel">
+        <div class="offcanvas-header my-1">
+        <h5 class="offcanvas-title" id="addCategorySidebarLabel">Nueva Sección</h5>
+        <button
+            type="button"
+            class="btn-close text-reset"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+        </div>
+            <div class="offcanvas-body pt-0">
                 <form id="newCategory" action="{{ url('admin/categories') }}" method="post" enctype="multipart/form-data">@csrf
-                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                        <label class="form-label" for="categorySection">Sección</label>
+                        <select
+                        id="categorySection"
+                        name="categorySection"
+                        class="form-select"
+                        data-allow-clear="true">
+                        <option value="" disabled>Seleccionar Sección</option>
+                        @foreach($sections as $section)
+                            <option value="{{ $section['id'] }}">{{ $section['name'] }}</option>
+                        @endforeach
+                        </select>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col mb-3">
                         <label for="categoryName" class="form-label">Nombre</label>
@@ -132,16 +158,19 @@
                         <input type="file" id="categoryImage" name="categoryImage" class="form-control" />
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-                    Cancelar
-                </button>
-                <button type="submit" class="btn btn-primary">Crear</button>
-            </div>
-            </form>
-            </div>
+                    <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1">Crear</button>
+                        <button
+                        type="reset"
+                        class="btn btn-label-secondary btn-cancel me-sm-0 me-1"
+                        data-bs-dismiss="offcanvas">
+                        Cancelar
+                        </button>
+                    </div>
+                    <div><button class="btn btn-label-danger btn-delete-event d-none">Delete</button></div>
+                    </div>
+                </form>
             </div>
         </div>
 

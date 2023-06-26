@@ -254,12 +254,14 @@ class AdminController extends Controller
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
             $rules = [
+                'categorySection' => 'required',
                 'categoryName' => 'required',
                 'categoryDescription' => 'required',
                 'categoryImage' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             ];
 
             $customMessages = [
+                'categorySection.required' => 'Una sección es requerida',
                 'categoryName.required' => 'Nombre de categoría es requerido',
                 'categoryDescription.required' => 'Descripción de categoría es requerida',
                 'categoryImage.image' => 'Formato de imagen inválido',
@@ -294,6 +296,7 @@ class AdminController extends Controller
 
             // Add Category
             $category = new Category();
+            $category->section_id = $data['categorySection'];
             $category->name = $data['categoryName'];
             $category->description = $data['categoryDescription'];
             $category->image = $imageName;
@@ -303,9 +306,11 @@ class AdminController extends Controller
             return redirect()->back()->with('success_message', 'Categoría agregada!');
         }
 
+        $sections = Section::get()->toArray();
+        // echo "<pre>"; print_r($sections); die;
         $categories = Category::with(['section'])->get()->toArray();
         // echo "<pre>"; print_r($categories); die;
-        return view('admin.catalog.categories')->with(compact('categories'));
+        return view('admin.catalog.categories')->with(compact('categories', 'sections'));
     }
 
     // Category Status
