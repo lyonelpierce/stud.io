@@ -47,21 +47,35 @@
             <div data-i18n="Dashboard">Tablero</div>
         </a>
     </li>
-    <li class="menu-item{{ Request::routeIs('admin.categories') ? ' active' : '' }}">
-        <a href="{{ route('admin.categories') }}" class="menu-link">
+    <li class="menu-item{{ Request::routeIs('admin.categories') || Request::routeIs('admin.sections') ? ' active open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ti ti-category"></i>
-            <div data-i18n="Categories">Categorías</div>
+            <div data-i18n="Catalog">Catalogo</div>
         </a>
+        <ul class="menu-sub">
+            <li class="menu-item{{ Request::routeIs('admin.sections') ? ' active' : '' }}">
+                <a href="{{ route('admin.sections') }}" class="menu-link">
+                    <div data-i18n="Secctions">Secciones</div>
+                </a>
+            </li>
+        </ul>
+        <ul class="menu-sub">
+            <li class="menu-item{{ Request::routeIs('admin.categories') ? ' active' : '' }}">
+                <a href="{{ route('admin.categories') }}" class="menu-link">
+                    <div data-i18n="Categories">Categorías</div>
+                </a>
+            </li>
+        </ul>
     </li>
-    <li class="menu-item{{ Request::routeIs('admin.users.tattooers') ? ' active open' : '' }}">
+    <li class="menu-item{{ Request::routeIs('admin.users.vendors') ? ' active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ti ti-user"></i>
             <div data-i18n="Users">Usuarios</div>
         </a>
         <ul class="menu-sub">
-            <li class="menu-item{{ Request::routeIs('admin.users.tattooers') ? ' active' : '' }}">
-                <a href="{{ route('admin.users.tattooers') }}" class="menu-link">
-                    <div data-i18n="Tattooers">Tatuadores</div>
+            <li class="menu-item{{ Request::routeIs('admin.users.vendors') ? ' active' : '' }}">
+                <a href="{{ route('admin.users.vendors') }}" class="menu-link">
+                    <div data-i18n="Vendors">Vendedores</div>
                 </a>
             </li>
         </ul>
@@ -91,7 +105,7 @@
                 <div data-i18n="Dashboard">Tablero</div>
             </a>
         </li>
-        <li class="menu-item{{ Request::routeIs('vendor.account') || Request::routeIs('vendor.bank') || Request::routeIs('vendor.studio') || Request::routeIs('vendor.security') ? ' active open' : '' }}">
+        <li class="menu-item{{ Request::routeIs('vendor.account') || Request::routeIs('vendor.bank') || Request::routeIs('vendor.store') || Request::routeIs('vendor.security') ? ' active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons ti ti-settings"></i>
             <div data-i18n="Settings">Ajustes</div>
@@ -102,9 +116,9 @@
                     <div data-i18n="Account">Cuenta</div>
                 </a>
             </li>
-            <li class="menu-item{{ Request::routeIs('vendor.studio') ? ' active' : '' }}">
-                <a href="{{ route('vendor.studio') }}" class="menu-link">
-                    <div data-i18n="Studio">Estudio</div>
+            <li class="menu-item{{ Request::routeIs('vendor.store') ? ' active' : '' }}">
+                <a href="{{ route('vendor.store') }}" class="menu-link">
+                    <div data-i18n="Store">Tienda</div>
                 </a>
             </li>
             <li class="menu-item{{ Request::routeIs('vendor.bank') ? ' active' : '' }}">

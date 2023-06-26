@@ -14,8 +14,8 @@ class VendorsBusinessDetailsTableSeeder extends Seeder
     public function run(): void
     {
         $vendorBusinessRecords = [
-            ['vendor_id'=>1, 'studio_name'=>'Piramide', 'studio_description'=>'', 'studio_address'=>'Samanes', 'studio_city'=>'Guayaquil', 'studio_state'=>'Guayas', 'studio_mobile'=>'', 'studio_website'=>'', 'studio_ruc'=>'', 'studio_logo'=>''],
-            ['vendor_id'=>2, 'studio_name'=>'Eri Tattoo', 'studio_description'=>'', 'studio_address'=>'Samanes', 'studio_city'=>'Guayaquil', 'studio_state'=>'Guayas', 'studio_mobile'=>'', 'studio_website'=>'', 'studio_ruc'=>'', 'studio_logo'=>'']
+            ['vendor_id'=>1, 'store_name'=>'Piramide', 'store_description'=>'', 'store_address'=>'Samanes', 'store_city'=>'Guayaquil', 'store_state'=>'Guayas', 'store_mobile'=>'', 'store_website'=>'', 'store_ruc'=>'', 'store_logo'=>''],
+            ['vendor_id'=>2, 'store_name'=>'Eri Tattoo', 'store_description'=>'', 'store_address'=>'Samanes', 'store_city'=>'Guayaquil', 'store_state'=>'Guayas', 'store_mobile'=>'', 'store_website'=>'', 'store_ruc'=>'', 'store_logo'=>'']
         ];
         VendorsBusinessDetail::insert($vendorBusinessRecords);
     }

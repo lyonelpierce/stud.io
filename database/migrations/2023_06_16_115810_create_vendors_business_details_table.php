@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('vendors_business_details', function (Blueprint $table) {
             $table->id();
             $table->integer('vendor_id');
-            $table->string('studio_name');
-            $table->string('studio_description')->nullable();
-            $table->string('studio_address');
-            $table->string('studio_city');
-            $table->string('studio_state');
-            $table->string('studio_mobile');
-            $table->string('studio_website')->nullable();
-            $table->string('studio_ruc')->nullable();
-            $table->string('studio_logo');
+            $table->string('store_name');
+            $table->string('store_description')->nullable();
+            $table->string('store_address');
+            $table->string('store_city');
+            $table->string('store_state');
+            $table->string('store_mobile');
+            $table->string('store_website')->nullable();
+            $table->string('store_ruc');
+            $table->string('store_logo');
             $table->timestamps();
         });
     }

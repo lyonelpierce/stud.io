@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('meta')
-    Ajustes - Estudio
+    Ajustes - Tienda
 @endsection
 
 @section('css')
@@ -12,7 +12,7 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Ajustes /</span> Estudio</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Ajustes /</span> Tienda</h4>
         <div class="row">
         <!-- User Sidebar -->
         <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
@@ -21,9 +21,9 @@
             <div class="card-body">
                 <div class="user-avatar-section">
                 <div class="d-flex align-items-center flex-column">
-                    @if (!empty($adminDetails['studio_logo']))
+                    @if (!empty($adminDetails['store_logo']))
                         <img class="img-fluid rounded mb-3 pt-1 mt-4"
-                            src="{{ url('vendor/images/logos/'.$adminDetails['studio_logo']) }}"
+                            src="{{ url('vendor/images/logos/'.$adminDetails['store_logo']) }}"
                             height="100"
                             width="100"
                             alt="User avatar">
@@ -34,7 +34,7 @@
                             width="100"
                             alt="User avatar">
                     @endif                    <div class="user-info text-center">
-                    <h4 class="mb-2">{{ $adminDetails['studio_name'] }}</h4>
+                    <h4 class="mb-2">{{ $adminDetails['store_name'] }}</h4>
                     </div>
                 </div>
                 </div>
@@ -58,16 +58,24 @@
                 <div class="info-container">
                 <ul class="list-unstyled">
                     <li class="mb-2 pt-1">
+                        <span class="fw-semibold me-1">RUC:</span>
+                        <span>{{ $adminDetails['store_ruc'] }}</span>
+                    </li>
+                    <li class="mb-2 pt-1">
+                        <span class="fw-semibold me-1">Teléfono:</span>
+                        <span>{{ $adminDetails['store_mobile'] }}</span>
+                    </li>
+                    <li class="mb-2 pt-1">
                         <span class="fw-semibold me-1">Provincia:</span>
-                        <span>{{ $adminDetails['studio_state'] }}</span>
+                        <span>{{ $adminDetails['store_state'] }}</span>
                     </li>
                     <li class="mb-2 pt-1">
                         <span class="fw-semibold me-1">Ciudad:</span>
-                        <span>{{ $adminDetails['studio_city'] }}</span>
+                        <span>{{ $adminDetails['store_city'] }}</span>
                     </li>
                     <li class="mb-2 pt-1">
                         <span class="fw-semibold me-1">Dirección:</span>
-                        <span>{{ $adminDetails['studio_address'] }}</span>
+                        <span>{{ $adminDetails['store_address'] }}</span>
                     </li>
                 </ul>
                 <!-- <div class="d-flex justify-content-center">
@@ -91,7 +99,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link active" href="javascript:void(0);">
-                    <i class="ti ti-ballpen ti-xs me-1"></i>Estudio
+                    <i class="ti ti-ballpen ti-xs me-1"></i>Tienda
                 </a>
             </li>
             <li class="nav-item">
@@ -109,7 +117,7 @@
 
             <!-- Activity Timeline -->
             <div class="card mb-4">
-            <h5 class="card-header">Actualizar Información del Estudio</h5>
+            <h5 class="card-header">Actualizar Información de la Tienda</h5>
             <div class="card-body pb-0">
             @if(Session::has('success_message'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -131,92 +139,92 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-            <form id="newStudioForm" class="row g-3 mb-4" action="{{ url('vendor/studio') }}" method="post" enctype="multipart/form-data">@csrf
+            <form id="newStoreForm" class="row g-3 mb-4" action="{{ url('vendor/store') }}" method="post" enctype="multipart/form-data">@csrf
                     <div class="col-12">
-                        <label class="form-label" for="studioName">Nombre</label>
+                        <label class="form-label" for="storeName">Nombre</label>
                         <input
                         type="text"
-                        id="studioName"
-                        name="studioName"
+                        id="storeName"
+                        name="storeName"
                         class="form-control"
-                        value="{{ $adminDetails['studio_name'] }}"
+                        value="{{ $adminDetails['store_name'] }}"
                         placeholder="John" />
                     </div>
                     <div class='col-12'>
-                        <label class="form-label" for="studioDescription">Descripción (Opcional)</label>
-                        <textarea class="form-control" id="studioDescription" name="studioDescription" rows="3"></textarea>
+                        <label class="form-label" for="storeDescription">Descripción (Opcional)</label>
+                        <textarea class="form-control" id="storeDescription" name="storeDescription" rows="3"></textarea>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label class="form-label" for="studioState">Provincia</label>
+                        <label class="form-label" for="storeState">Provincia</label>
                         <select
-                        id="studioState"
-                        name="studioState"
+                        id="storeState"
+                        name="storeState"
                         class="select2 form-select"
                         data-allow-clear="true">
                         <option value="" disabled>Seleccionar Provincia</option>
                         @foreach($states as $state)
-                            <option value="{{ $state['name'] }}" @if($state['name'] == $adminDetails['studio_state']) selected @endif>{{ $state['name'] }}</option>
+                            <option value="{{ $state['name'] }}" @if($state['name'] == $adminDetails['store_state']) selected @endif>{{ $state['name'] }}</option>
                         @endforeach
                         </select>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label class="form-label" for="studioCity">Ciudad</label>
+                        <label class="form-label" for="storeCity">Ciudad</label>
                         <select
-                        id="studioCity"
-                        name="studioCity"
+                        id="storeCity"
+                        name="storeCity"
                         class="select2 form-select"
                         data-allow-clear="true">
                         <option value="" disabled>Seleccionar Ciudad</option>
                         @foreach($cities as $city)
-                            <option value="{{ $city['name'] }}" @if($city['name'] == $adminDetails['studio_city']) selected @endif >{{ $city['name'] }}</option>
+                            <option value="{{ $city['name'] }}" @if($city['name'] == $adminDetails['store_city']) selected @endif >{{ $city['name'] }}</option>
                         @endforeach
                         </select>
                     </div>
                     <div class="col-12">
-                        <label class="form-label" for="studioAddress">Dirección</label>
+                        <label class="form-label" for="storeAddress">Dirección</label>
                         <input
                         type="text"
-                        id="studioAddress"
-                        name="studioAddress"
+                        id="storeAddress"
+                        name="storeAddress"
                         class="form-control"
-                        value="{{ $adminDetails['studio_address'] }}"
+                        value="{{ $adminDetails['store_address'] }}"
                         placeholder="Cdla. La Alborada..." />
                     </div>
                     <div class="col-12 col-md-6">
-                        <label class="form-label" for="studioMobile">Teléfono</label>
+                        <label class="form-label" for="storeMobile">Teléfono</label>
                         <div class="input-group">
                             <span class="input-group-text">09</span>
                             <input
                             type="text"
-                            id="studioMobile"
-                            name="studioMobile"
-                            value="{{ $adminDetails['studio_mobile'] }}"
+                            id="storeMobile"
+                            name="storeMobile"
+                            value="{{ $adminDetails['store_mobile'] }}"
                             class="form-control phone-number-mask"
                             placeholder="81234567" />
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label class="form-label" for="studioRuc">RUC (Opcional)</label>
+                        <label class="form-label" for="storeRuc">RUC</label>
                         <div class="input-group">
                             <input
                             type="text"
-                            id="studioRuc"
-                            name="studioRuc"
-                            value="{{ $adminDetails['studio_ruc'] }}"
+                            id="storeRuc"
+                            name="storeRuc"
+                            value="{{ $adminDetails['store_ruc'] }}"
                             class="form-control phone-number-mask"
                             placeholder="0912345678" />
                             <span class="input-group-text">001</span>
                         </div>
                     </div>
                     <div class="col-12">
-                        <label class="form-label" for="studioWebsite">Website (Opcional)</label>
+                        <label class="form-label" for="storeWebsite">Website (Opcional)</label>
                         <input
                         type="text"
-                        id="studioWebsite"
-                        name="studioWebsite"
+                        id="storeWebsite"
+                        name="storeWebsite"
                         class="form-control"
-                        value="{{ $adminDetails['studio_website'] }}"
-                        placeholder="http://mistudio.com/" />
+                        value="{{ $adminDetails['store_website'] }}"
+                        placeholder="http://mistore.com/" />
                     </div>
                     <div class="mb-3">
                         <label for="accountImage" class="form-label">Logo (jpg, jpeg, png)</label>
@@ -248,5 +256,5 @@
 
 @section('js')
 <script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
-<!-- <script src="{{ url('/admin/assets/customjs/settingsStudio.js') }}"></script> -->
+<!-- <script src="{{ url('/admin/assets/customjs/settingsStore.js') }}"></script> -->
 @endsection

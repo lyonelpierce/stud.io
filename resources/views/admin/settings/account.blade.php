@@ -115,8 +115,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('vendor.studio') }}">
-                    <i class="ti ti-ballpen ti-xs me-1"></i>Estudio
+                <a class="nav-link" href="{{ route('vendor.store') }}">
+                    <i class="ti ti-ballpen ti-xs me-1"></i>Tienda
                 </a>
             </li>
             <li class="nav-item">

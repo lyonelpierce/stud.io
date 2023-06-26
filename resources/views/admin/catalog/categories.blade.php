@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('meta')
-    Categorias
+    Catalogo - Categorias
 @endsection
 
 @section('css')
@@ -17,7 +17,7 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4">Categorías</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Catalogo /</span> Categorias</h4>
 
         <!-- DataTable with Buttons -->
         <div class="card">
@@ -48,6 +48,7 @@
                 <tr>
                     <th>id</th>
                     <th>Nombre</th>
+                    <th>Sección</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -61,18 +62,22 @@
                             <div class="avatar-wrapper">
                                 <div class="avatar me-2">
                                     @if($category['image'])
-                                        <img src="{{ url('categories/images/photos/'.$category['image']) }}" alt="Avatar" class="rounded-circle">
+                                    <img src="{{ url('catalog/categories/images/'.$category['image']) }}" alt="Avatar" class="rounded-circle">
                                     @else
-                                        <img src="{{ url('admin/images/photos/default.png') }}" alt="Avatar" class="rounded-circle">
+                                    <img src="{{ url('admin/images/photos/default.png') }}" alt="Avatar" class="rounded-circle">
                                     @endif
                                 </div>
                             </div>
                             <div class="d-flex flex-column">
                                 <span class="emp_name text-truncate">{{ $category['name'] }}</span>
                                 <small class="emp_post text-truncate text-muted">{{ $category['description'] }}</small>
-                        </div>                    <td>
+                            </div>
+                    </td>
+                    <td>{{ $category['section']['name'] }}</td>
+
+                    <td>
                         <label class="switch">
-                        <input type="checkbox" class="switch-input" categoryId="{{ $category['id'] }}" {{ $category['status'] === 1 ? 'checked' : '' }}>
+                            <input type="checkbox" class="switch-input" categoryId="{{ $category['id'] }}" {{ $category['status'] === 1 ? 'checked' : '' }}>
                             <span class="switch-toggle-slider">
                                 <span class="switch-on"></span>
                                 <span class="switch-off"></span>

@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Section;
+use App\Models\Category;
 
-class Category extends Model
+class Section extends Model
 {
     use HasFactory;
-    public function section()
+    public function categories()
     {
-        return $this->belongsTo(Section::class);
+        return $this->hasMany(Category::class);
     }
 }

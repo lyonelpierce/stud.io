@@ -93,32 +93,33 @@ class VendorController extends Controller
         return view('admin.settings.account')->with(compact('adminDetails', 'states', 'cities'));
     }
 
-    // Update Vendor Studio Details
-    public function updateVendorStudioDetails(Request $request) {
+    // Update Vendor Store Details
+    public function updateVendorStoreDetails(Request $request) {
         if($request->isMethod('post')){
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
             $rules = [
-                'studioName' => 'required|regex:/^[\pL\s\-]+$/u',
-                'studioAddress' => 'required',
-                'studioCity' => 'required',
-                'studioState' => 'required',
-                'studioMobile' => 'required|numeric|digits:8',
-                'studioRuc' => 'nullable|numeric|digits:10',
-                'studioUrl' => 'nullable|url',
+                'storeName' => 'required|regex:/^[\pL\s\-]+$/u',
+                'storeAddress' => 'required',
+                'storeCity' => 'required',
+                'storeState' => 'required',
+                'storeMobile' => 'required|numeric|digits:8',
+                'storeRuc' => 'required|numeric|digits:10',
+                'storeUrl' => 'nullable|url',
             ];
 
             $customMessages = [
-                'studioName.required' => 'Nombre del studio es requerido',
-                'studioName.regex' => 'Nombre del studio inválido',
-                'studioAddress.required' => 'Dirección del studio es requerida',
-                'studioCity.required' => 'Ciudad del studio es requerida',
-                'studioState.required' => 'Provincia del studio es requerida',
-                'studioMobile.required' => 'Número de teléfono del studio es requerido',
-                'studioMobile.numeric' => 'Número de teléfono del studio inválido',
-                'studioMobile.digits' => 'Número de teléfono del studio debe contener 8 digitos',
-                'studioRuc.numeric' => 'Número de RUC inválido',
-                'studioRuc.digits' => 'Número de RUC debe contener 13 digitos',
+                'storeName.required' => 'Nombre de la tienda es requerido',
+                'storeName.regex' => 'Nombre de la tienda inválido',
+                'storeAddress.required' => 'Dirección de la tienda es requerida',
+                'storeCity.required' => 'Ciudad de la tienda es requerida',
+                'storeState.required' => 'Provincia de la tienda es requerida',
+                'storeMobile.required' => 'Número de teléfono de la tienda es requerido',
+                'storeMobile.numeric' => 'Número de teléfono de la tienda inválido',
+                'storeMobile.digits' => 'Número de teléfono de la tienda debe contener 8 digitos',
+                'storeRuc.required' => 'Número de RUC es requerido',
+                'storeRuc.numeric' => 'Número de RUC inválido',
+                'storeRuc.digits' => 'Número de RUC debe contener 13 digitos',
             ];
 
             $this->validate($request, $rules, $customMessages);
@@ -147,7 +148,7 @@ class VendorController extends Controller
                 $imageName = "";
             }
 
-            VendorsBusinessDetail::where('vendor_id', Auth::guard('vendor')->user()->id)->update(['studio_name'=>$data['studioName'], 'studio_address'=>$data['studioAddress'], 'studio_city'=>$data['studioCity'], 'studio_state'=>$data['studioState'], 'studio_mobile'=>$data['studioMobile'], 'studio_description'=>$data['studioDescription'], 'studio_ruc'=>$data['studioRuc'], 'studio_website'=>$data['studioWebsite'], 'studio_logo'=>$imageName]);
+            VendorsBusinessDetail::where('vendor_id', Auth::guard('vendor')->user()->id)->update(['store_name'=>$data['storeName'], 'store_address'=>$data['storeAddress'], 'store_city'=>$data['storeCity'], 'store_state'=>$data['storeState'], 'store_mobile'=>$data['storeMobile'], 'store_description'=>$data['storeDescription'], 'store_ruc'=>$data['storeRuc'], 'store_website'=>$data['storeWebsite'], 'store_logo'=>$imageName]);
 
             return redirect()->back()->with('success_message', 'Información Actualizada!');
         }
@@ -155,15 +156,10 @@ class VendorController extends Controller
         $adminDetails = VendorsBusinessDetail::where('vendor_id', Auth::guard('vendor')->user()->id)->first()->toArray();
 
         $states = State::get()->toArray();
-        $selectedState = State::where('name', $adminDetails['studio_state'])->first()->toArray();
+        $selectedState = State::where('name', $adminDetails['store_state'])->first()->toArray();
         $cities = City::where('state_id', $selectedState['id'])->get()->toArray();
 
-        return view ('admin.settings.studio')->with(compact('adminDetails', 'states', 'cities'));
-    }
-
-    // New Studio
-    public function newStudio(Request $request) {
-        $data = $request->input('selectedRadio');
+        return view ('admin.settings.store')->with(compact('adminDetails', 'states', 'cities'));
     }
 
     // Update Vendor Bank Details
@@ -257,4 +253,5 @@ class VendorController extends Controller
         }
         return redirect()->back()->with('error', 'Cuenta no encontrada!');
     }
+
 }
