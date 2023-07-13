@@ -5,7 +5,7 @@
   class="light-style layout-navbar-fixed layout-menu-fixed"
   dir="ltr"
   data-theme="theme-default"
-  data-assets-path="{{ url('admin/assets/') . '/' }}"
+  data-assets-path="{{ secure_asset('admin/assets/') . '/' }}"
   data-template="vertical-menu-template-starter">
   <head>
     <meta charset="utf-8" />
