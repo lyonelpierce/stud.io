@@ -5,7 +5,7 @@
   class="light-style customizer-hide"
   dir="ltr"
   data-theme="theme-default"
-  data-assets-path="{{ url('admin/assets/') . '/' }}"
+  data-assets-path="{{ secure_asset('admin/assets/') . '/' }}"
   data-template="vertical-menu-template">
   <head>
     <meta charset="utf-8" />
@@ -18,7 +18,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ url('admin/assets/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ secure_asset('admin/assets/img/favicon/favicon.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
