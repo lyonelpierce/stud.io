@@ -29,32 +29,32 @@
       rel="stylesheet" />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/fonts/fontawesome.css') }}" />
-    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/fonts/tabler-icons.css') }}" />
-    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/fonts/flag-icons.css') }}" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/fonts/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/fonts/tabler-icons.css') }}" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/fonts/flag-icons.css') }}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="{{ url('/admin/assets/css/demo.css') }}" />
-    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/select2/select2.css') }}" />
-    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/tagify/tagify.css') }}" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/css/demo.css') }}" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/select2/select2.css') }}" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/tagify/tagify.css') }}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-    <link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/node-waves/node-waves.css') }}" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+    <link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/node-waves/node-waves.css') }}" />
     @yield('css')
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="{{ url('/admin/assets/vendor/js/helpers.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/js/helpers.js') }}"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
-    <script src="{{ url('/admin/assets/vendor/js/template-customizer.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/js/template-customizer.js') }}"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="{{ url('/admin/assets/js/config.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/js/config.js') }}"></script>
   </head>
 
   <body>
@@ -102,22 +102,22 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="{{ url('/admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
-    <script src="{{ url('/admin/assets/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ url('/admin/assets/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ url('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-    <script src="{{ url('/admin/assets/vendor/libs/node-waves/node-waves.js') }}"></script>
-    <script src="{{ url('/admin/assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/libs/node-waves/node-waves.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/libs/select2/select2.js') }}"></script>
 
-    <script src="{{ url('/admin/assets/vendor/libs/hammer/hammer.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/libs/hammer/hammer.js') }}"></script>
 
-    <script src="{{ url('/admin/assets/vendor/js/menu.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
     @yield('js')
     <!-- Main JS -->
-    <script src="{{ url('/admin/assets/js/main.js') }}"></script>
+    <script src="{{ secure_asset('/admin/assets/js/main.js') }}"></script>
 
     <!-- Page JS -->
   </body>

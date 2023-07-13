@@ -20,9 +20,9 @@
         <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
           <div class="avatar avatar-online">
           @if (Auth::guard('admin')->check() && !empty(Auth::guard('admin')->user()->image))
-            <img src="{{ url('admin/images/photos/'.Auth::guard('admin')->user()->image) }}" alt class="h-auto rounded-circle" />
+            <img src="{{ secure_asset('admin/images/photos/'.Auth::guard('admin')->user()->image) }}" alt class="h-auto rounded-circle" />
           @elseif (Auth::guard('vendor')->check() && !empty(Auth::guard('vendor')->user()->image))
-            <img src="{{ url('vendor/images/photos/'.Auth::guard('vendor')->user()->image) }}" alt class="h-auto rounded-circle" />
+            <img src="{{ secure_asset('vendor/images/photos/'.Auth::guard('vendor')->user()->image) }}" alt class="h-auto rounded-circle" />
           @else
             <img src="/admin/images/photos/default.png" alt class="h-auto rounded-circle" />
           @endif
@@ -35,9 +35,9 @@
                 <div class="flex-shrink-0 me-3">
                 <div class="avatar avatar-online">
                 @if (Auth::guard('admin')->check() && !empty(Auth::guard('admin')->user()->image))
-                  <img src="{{ url('admin/images/photos/'.Auth::guard('admin')->user()->image) }}" alt class="h-auto rounded-circle" />
+                  <img src="{{ secure_asset('admin/images/photos/'.Auth::guard('admin')->user()->image) }}" alt class="h-auto rounded-circle" />
                 @elseif (Auth::guard('vendor')->check() && !empty(Auth::guard('vendor')->user()->image))
-                  <img src="{{ url('vendor/images/photos/'.Auth::guard('vendor')->user()->image) }}" alt class="h-auto rounded-circle" />
+                  <img src="{{ secure_asset('vendor/images/photos/'.Auth::guard('vendor')->user()->image) }}" alt class="h-auto rounded-circle" />
                 @else
                   <img src="/admin/images/photos/default.png" alt class="h-auto rounded-circle" />
                 @endif
