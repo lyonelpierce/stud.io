@@ -191,5 +191,5 @@
     <div class="content-backdrop fade"></div>
 </div>
 
-<script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/customjs/settingsAccount.js') }}"></script>
 @endsection

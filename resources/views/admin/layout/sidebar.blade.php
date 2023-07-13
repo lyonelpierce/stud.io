@@ -27,7 +27,7 @@
             fill="#7367F0" />
         </svg>
         </span>
-        <span class="app-brand-text demo menu-text fw-bold">Style593</span>
+        <span class="app-brand-text demo menu-text fw-bold">Marketplace</span>
     </a>
 
     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -66,13 +66,13 @@
                 </a>
             </li>
         </ul>
-        <ul class="menu-sub">
+        <!-- <ul class="menu-sub">
             <li class="menu-item{{ Request::routeIs('admin.products') ? ' active' : '' }}">
                 <a href="{{ route('admin.products') }}" class="menu-link">
                     <div data-i18n="Products">Productos</div>
                 </a>
             </li>
-        </ul>
+        </ul> -->
     </li>
     <li class="menu-item{{ Request::routeIs('admin.users.vendors') ? ' active open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">

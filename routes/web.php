@@ -49,7 +49,7 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get', 'post'], 'admin/users/vendors', 'AdminController@userList')->name('admin.users.vendors');
         Route::post('admin/users/userStatus', 'AdminController@userStatus')->name('admin.users.vendors.status');
         Route::delete('admin/users/userDelete/{userId}', 'AdminController@userDelete')->name('admin.users.vendors.delete');
-        
+
         Route::match(['get', 'post'], 'admin/sections', 'AdminController@sectionList')->name('admin.sections');
         Route::post('admin/sections/sectionStatus', 'AdminController@sectionStatus')->name('admin.sections.status');
         Route::delete('admin/sections/sectionDelete/{sectionId}', 'AdminController@sectionDelete')->name('admin.sections.delete');
@@ -71,7 +71,5 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get', 'post'], 'vendor/security', 'VendorController@updateVendorPassword')->name('vendor.security');
         Route::match(['get', 'post'], 'vendor/bank', 'VendorController@updateVendorBankDetails')->name('vendor.bank');
         Route::delete('vendor/delete/{id}', 'VendorController@deleteVendorAccount')->name('vendor.delete');
-
-        Route::get('vendor/calendar', 'VendorController@calendar')->name('vendor.calendar');
     });
 });

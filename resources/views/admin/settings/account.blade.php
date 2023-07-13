@@ -18,16 +18,16 @@
             <div class="card-body">
                 <div class="user-avatar-section">
                 <div class="d-flex align-items-center flex-column">
-                    
+
                     @if (!empty($adminDetails['image']))
                         <img class="img-fluid rounded mb-3 pt-1 mt-4"
-                            src="{{ Auth::guard('admin')->check() ? url('admin/images/photos/'.$adminDetails['image']) : url('vendor/images/photos/'.$adminDetails['image']) }}"
+                            src="{{ Auth::guard('admin')->check() ? secure_asset('admin/images/photos/'.$adminDetails['image']) : secure_asset('vendor/images/photos/'.$adminDetails['image']) }}"
                             height="100"
                             width="100"
                             alt="User avatar">
                     @else
                         <img class="img-fluid rounded mb-3 pt-1 mt-4"
-                            src="{{ url('admin/images/photos/default.png') }}"
+                            src="{{ secure_asset('admin/images/photos/default.png') }}"
                             height="100"
                             width="100"
                             alt="User avatar">
@@ -157,7 +157,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-                <form id="editUserForm" class="row g-3 mb-4" action="{{ Auth::guard('admin')->check() ? url('admin/account') : url('vendor/account') }}" method="post" enctype="multipart/form-data">@csrf
+                <form id="editUserForm" class="row g-3 mb-4" action="{{ Auth::guard('admin')->check() ? secure_asset('admin/account') : secure_asset('vendor/account') }}" method="post" enctype="multipart/form-data">@csrf
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="accountFirstName">Nombre</label>
                         <input
@@ -266,5 +266,5 @@
     <div class="content-backdrop fade"></div>
 </div>
 
-<script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/customjs/settingsAccount.js') }}"></script>
 @endsection
