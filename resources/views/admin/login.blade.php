@@ -89,7 +89,7 @@
             <div class="app-brand mb-4">
               <a href="/" class="app-brand-link gap-2">
                 <span class="app-brand-logo demo">
-                  <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="https://www.w3.org/2000/svg">
                     <path
                       fill-rule="evenodd"
                       clip-rule="evenodd"

@@ -9,6 +9,7 @@ use App\Models\City;
 use App\Models\Vendor;
 use App\Models\Section;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Auth;
 use Image;
@@ -333,5 +334,11 @@ class AdminController extends Controller
             return response()->json(['success_message' => 'Categoría eliminada!']);
         }
         return response()->json(['error_message' => 'Categoría no encontrada!']);
+    }
+
+    public function productList()
+    {
+        $products = Product::with([])->get()->toArray();
+        return view('admin.catalog.products.products')->with(compact('products'));
     }
 }

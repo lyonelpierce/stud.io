@@ -57,6 +57,10 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get', 'post'], 'admin/categories', 'AdminController@categoryList')->name('admin.categories');
         Route::post('admin/categories/categoryStatus', 'AdminController@categoryStatus')->name('admin.categories.status');
         Route::delete('admin/categories/categoryDelete/{categoryId}', 'AdminController@categoryDelete')->name('admin.categories.delete');
+
+        Route::match(['get', 'post'], 'admin/products', 'AdminController@productList')->name('admin.products');
+        Route::post('admin/products/productStatus', 'AdminController@productStatus')->name('admin.products.status');
+        Route::delete('admin/products/productDelete/{productId}', 'AdminController@productDelete')->name('admin.products.delete');
     });
 
     // Vendor Dashboard
