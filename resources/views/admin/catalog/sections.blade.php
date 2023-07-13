@@ -5,10 +5,10 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/animate-css/animate.css') }}" />
-<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/animate-css/animate.css') }}" />
+<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 @endsection
 
 @section('content')
@@ -61,9 +61,9 @@
                             <div class="avatar-wrapper">
                                 <div class="avatar me-2">
                                     @if($section['image'])
-                                    <img src="{{ url('catalog/sections/images/'.$section['image']) }}" alt="Avatar" class="rounded-circle">
+                                    <img src="{{ secure_asset('catalog/sections/images/'.$section['image']) }}" alt="Avatar" class="rounded-circle">
                                     @else
-                                    <img src="{{ url('admin/images/photos/default.png') }}" alt="Avatar" class="rounded-circle">
+                                    <img src="{{ secure_asset('admin/images/photos/default.png') }}" alt="Avatar" class="rounded-circle">
                                     @endif
                                 </div>
                             </div>
@@ -109,7 +109,7 @@
             aria-label="Close"></button>
         </div>
         <div class="offcanvas-body pt-0">
-        <form id="newsection" action="{{ url('admin/sections') }}" method="post" enctype="multipart/form-data">@csrf
+        <form id="newsection" action="{{ secure_asset('admin/sections') }}" method="post" enctype="multipart/form-data">@csrf
             <div class="row">
                 <div class="col mb-3">
                 <label for="sectionName" class="form-label">Nombre</label>
@@ -157,9 +157,9 @@
 @endsection
 
 @section('js')
-<script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
-<script src="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-<script src="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/customjs/settingsAccount.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
-<script src="{{ url('/admin/assets/customjs/sectionsList.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/customjs/sectionsList.js') }}"></script>
 @endsection

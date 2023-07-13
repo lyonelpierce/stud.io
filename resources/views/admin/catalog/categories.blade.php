@@ -5,10 +5,10 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/animate-css/animate.css') }}" />
-<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/animate-css/animate.css') }}" />
+<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 @endsection
 
 @section('content')
@@ -70,9 +70,9 @@
                             <div class="avatar-wrapper">
                                 <div class="avatar me-2">
                                     @if($category['image'])
-                                    <img src="{{ url('catalog/categories/images/'.$category['image']) }}" alt="Avatar" class="rounded-circle">
+                                    <img src="{{ secure_asset('catalog/categories/images/'.$category['image']) }}" alt="Avatar" class="rounded-circle">
                                     @else
-                                    <img src="{{ url('admin/images/photos/default.png') }}" alt="Avatar" class="rounded-circle">
+                                    <img src="{{ secure_asset('admin/images/photos/default.png') }}" alt="Avatar" class="rounded-circle">
                                     @endif
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
             aria-label="Close"></button>
         </div>
             <div class="offcanvas-body pt-0">
-                <form id="newCategory" action="{{ url('admin/categories') }}" method="post" enctype="multipart/form-data">@csrf
+                <form id="newCategory" action="{{ secure_asset('admin/categories') }}" method="post" enctype="multipart/form-data">@csrf
                     <div class="row">
                         <div class="col mb-3">
                         <label class="form-label" for="categorySection">Sección</label>
@@ -183,9 +183,9 @@
 @endsection
 
 @section('js')
-<script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
-<script src="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-<script src="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/customjs/settingsAccount.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
-<script src="{{ url('/admin/assets/customjs/categoriesList.js') }}"></script>
+<script src="{{ secure_asset('/admin/assets/customjs/categoriesList.js') }}"></script>
 @endsection
