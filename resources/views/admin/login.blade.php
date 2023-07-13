@@ -13,7 +13,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Iniciar Sesión | Stud.io</title>
+    <title>Iniciar Sesión | Marketplace</title>
 
     <meta name="description" content="" />
 
@@ -117,7 +117,7 @@
               </a>
             </div>
             <!-- /Logo -->
-            <h3 class="mb-1 fw-bold">Bienvenido a Stud.io! 👋</h3>
+            <h3 class="mb-1 fw-bold">Bienvenido a Marketplace! 👋</h3>
             <p class="mb-4">Inicia sesión para continuar</p>
 
             <!-- Bootstrap Alert -->
