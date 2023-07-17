@@ -1,14 +1,14 @@
 @extends('admin.layout.layout')
 
 @section('meta')
-    Usuarios - Tatuadores
+    Usuarios - Vendedores
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
-<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/animate-css/animate.css') }}" />
-<link rel="stylesheet" href="{{ secure_asset('/admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
+<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/animate-css/animate.css') }}" />
+<link rel="stylesheet" href="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 @endsection
 
 @section('content')
@@ -17,13 +17,13 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Usuarios /</span> Tatuadores</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Usuarios /</span> Vendedores</h4>
 
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
             <div class="head-label pt-4 ps-3 pb-3">
-                <h5 class="card-title mb-0">Lista de Tatuadores</h5>
+                <h5 class="card-title mb-0">Lista de Vendedores</h5>
             </div>
             @if(Session::has('success_message'))
             <div class="alert alert-success alert-dismissible fade show ps-3 pe-3" role="alert">
@@ -58,9 +58,9 @@
                             <div class="avatar-wrapper">
                                 <div class="avatar me-2">
                                     @if($vendor['image'])
-                                        <img src="{{ secure_asset('vendor/images/photos/'.$vendor['image']) }}" alt="Avatar" class="rounded-circle">
+                                        <img src="{{ url('vendor/images/photos/'.$vendor['image']) }}" alt="Avatar" class="rounded-circle">
                                     @else
-                                        <img src="{{ secure_asset('admin/images/photos/default.png') }}" alt="Avatar" class="rounded-circle">
+                                        <img src="{{ url('admin/images/photos/default.png') }}" alt="Avatar" class="rounded-circle">
                                     @endif
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                                         <div class="my-3 pt-2 text-center">
                                         <img
                                             class="rounded-circle"
-                                            src="{{ $vendor['image'] ? secure_asset('vendor/images/photos/'.$vendor['image']) : secure_asset('admin/images/photos/default.png') }}"
+                                            src="{{ $vendor['image'] ? url('vendor/images/photos/'.$vendor['image']) : url('admin/images/photos/default.png') }}"
                                             alt="User Image"
                                             height="140" />
                                         </div>
@@ -151,7 +151,7 @@
                                         <div class="my-3 pt-2 text-center">
                                         <img
                                             class="rounded-circle"
-                                            src="{{ $vendor['vendor_business_details']['store_logo'] ? secure_asset('vendor/images/logos/'.$vendor['vendor_business_details']['stduio_logo']) : secure_asset('admin/images/photos/default.png') }}"
+                                            src="{{ $vendor['vendor_business_details']['store_logo'] ? url('vendor/images/logos/'.$vendor['vendor_business_details']['stduio_logo']) : url('admin/images/photos/default.png') }}"
                                             alt="User Image"
                                             height="140" />
                                         </div>
@@ -248,9 +248,9 @@
 @endsection
 
 @section('js')
-<script src="{{ secure_asset('/admin/assets/customjs/settingsAccount.js') }}"></script>
-<script src="{{ secure_asset('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-<script src="{{ secure_asset('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
+<script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
+<script src="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+<script src="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
-<script src="{{ secure_asset('/admin/assets/customjs/vendorsList.js') }}"></script>
+<script src="{{ url('/admin/assets/customjs/vendorsList.js') }}"></script>
 @endsection

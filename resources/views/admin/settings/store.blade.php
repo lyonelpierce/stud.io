@@ -23,13 +23,13 @@
                 <div class="d-flex align-items-center flex-column">
                     @if (!empty($adminDetails['store_logo']))
                         <img class="img-fluid rounded mb-3 pt-1 mt-4"
-                            src="{{ secure_asset('vendor/images/logos/'.$adminDetails['store_logo']) }}"
+                            src="{{ url('vendor/images/logos/'.$adminDetails['store_logo']) }}"
                             height="100"
                             width="100"
                             alt="User avatar">
                     @else
                         <img class="img-fluid rounded mb-3 pt-1 mt-4"
-                            src="{{ secure_asset('admin/images/photos/default.png') }}"
+                            src="{{ url('admin/images/photos/default.png') }}"
                             height="100"
                             width="100"
                             alt="User avatar">
@@ -139,7 +139,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-            <form id="newStoreForm" class="row g-3 mb-4" action="{{ secure_asset('vendor/store') }}" method="post" enctype="multipart/form-data">@csrf
+            <form id="newStoreForm" class="row g-3 mb-4" action="{{ url('vendor/store') }}" method="post" enctype="multipart/form-data">@csrf
                     <div class="col-12">
                         <label class="form-label" for="storeName">Nombre</label>
                         <input
@@ -255,5 +255,5 @@
 @endsection
 
 @section('js')
-<script src="{{ secure_asset('/admin/assets/customjs/settingsAccount.js') }}"></script>
+<script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
 @endsection

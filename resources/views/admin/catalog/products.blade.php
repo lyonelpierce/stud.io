@@ -1,7 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('meta')
-    Catálogo - Secciones
+    Catálogo - Productos
 @endsection
 
 @section('css')
@@ -17,19 +17,19 @@
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Catálogo /</span> Secciones</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Catálogo /</span> Productos</h4>
 
         <!-- DataTable with Buttons -->
         <div class="card">
             <div class="card-datatable table-responsive pt-0">
             <div class="head-label py-4 px-3 d-flex justify-content-between">
-                <h5 class="card-title mb-0">Lista de Secciones</h5>
-                <button class="btn btn-secondary create-new btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addSectionSidebar" tabindex="0" type="button">
+                <h5 class="card-title mb-0">Lista de Productos</h5>
+                <!-- <button class="btn btn-secondary create-new btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addProductSidebar" tabindex="0" type="button">
                     <span>
                         <i class="ti ti-plus me-sm-1"></i>
-                        <span class="d-none d-sm-inline-block">Nueva Sección</span>
+                        <span class="d-none d-sm-inline-block">Nuevo Producto</span>
                     </span>
-                </button>
+                </button> -->
             </div>
             @if(Session::has('success_message'))
             <div class="alert alert-success alert-dismissible fade show ps-3 pe-3" role="alert">
@@ -48,33 +48,50 @@
                 <tr>
                     <th>id</th>
                     <th>Nombre</th>
+                    <th>Tienda</th>
+                    <th>Sección</th>
+                    <th>Categoría</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($sections as $section)
+                @foreach ($products as $product)
                 <tr>
-                    <td>{{ $section['id'] }}</td>
+                    <td>{{ $product['id'] }}</td>
                     <td>
                         <div class="d-flex justify-content-start align-items-center user-name">
                             <div class="avatar-wrapper">
                                 <div class="avatar me-2">
-                                    @if($section['image'])
-                                    <img src="{{ url('catalog/sections/images/'.$section['image']) }}" alt="Avatar" class="rounded-circle">
+                                    @if($product['product_image'])
+                                    <img src="{{ url('catalog/products/images/'.$product['product_image']) }}" alt="Avatar" class="rounded-circle">
                                     @else
                                     <img src="{{ url('admin/images/photos/default.png') }}" alt="Avatar" class="rounded-circle">
                                     @endif
                                 </div>
                             </div>
                             <div class="d-flex flex-column">
-                                <span class="emp_name text-truncate">{{ $section['name'] }}</span>
-                                <small class="emp_post text-truncate text-muted">{{ $section['description'] }}</small>
+                                <span class="emp_name text-truncate">{{ $product['product_name'] }}</span>
                             </div>
                     </td>
                     <td>
+                        <div class="d-flex flex-column">
+                            <span class="emp_name text-truncate">{{ $product['vendor']['store_name'] }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column">
+                            <span class="emp_name text-truncate">{{ $product['section']['name'] }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column">
+                            <span class="emp_name text-truncate">{{ $product['category']['name'] }}</span>
+                        </div>
+                    </td>
+                    <td>
                         <label class="switch">
-                            <input type="checkbox" class="switch-input" sectionId="{{ $section['id'] }}" {{ $section['status'] === 1 ? 'checked' : '' }}>
+                            <input type="checkbox" class="switch-input" productId="{{ $product['id'] }}" {{ $product['status'] === 1 ? 'checked' : '' }}>
                             <span class="switch-toggle-slider">
                                 <span class="switch-on"></span>
                                 <span class="switch-off"></span>
@@ -82,7 +99,7 @@
                         </label>
                     </td>
                     <td>
-                        <a href="javascript:;" class="btn-sm btn-item item-delete" sectionId="{{ $section['id'] }}">
+                        <a href="javascript:;" class="btn-sm btn-item item-delete" productId="{{ $product['id'] }}">
                             <i class="ti ti-trash text-danger"></i>
                         </a>
                     </td>
@@ -98,10 +115,10 @@
         <div
         class="offcanvas offcanvas-end event-sidebar"
         tabindex="-1"
-        id="addSectionSidebar"
-        aria-labelledby="addSectionSidebarLabel">
+        id="addProductSidebar"
+        aria-labelledby="addProductSidebarLabel">
         <div class="offcanvas-header my-1">
-        <h5 class="offcanvas-title" id="addSectionSidebarLabel">Nueva Sección</h5>
+        <h5 class="offcanvas-title" id="addProductSidebarLabel">Nueva Sección</h5>
         <button
             type="button"
             class="btn-close text-reset"
@@ -109,27 +126,27 @@
             aria-label="Close"></button>
         </div>
         <div class="offcanvas-body pt-0">
-        <form id="newsection" action="{{ url('admin/sections') }}" method="post" enctype="multipart/form-data">@csrf
+        <form id="newproduct" action="{{ url('admin/products') }}" method="post" enctype="multipart/form-data">@csrf
             <div class="row">
                 <div class="col mb-3">
-                <label for="sectionName" class="form-label">Nombre</label>
-                <input type="text" id="sectionName" name="sectionName" class="form-control" placeholder="Nombre de la categoría" />
+                <label for="productName" class="form-label">Nombre</label>
+                <input type="text" id="productName" name="productName" class="form-control" placeholder="Nombre de la categoría" />
                 </div>
             </div>
             <div class="row">
                 <div class="col mb-3">
-                <label for="sectionDescription" class="form-label">Descripción</label>
+                <label for="productDescription" class="form-label">Descripción</label>
                 <input
                     type="text"
-                    id="sectionDescription"
-                    name="sectionDescription"
+                    id="productDescription"
+                    name="productDescription"
                     class="form-control"
-                    placeholder="Descripción de la categoría" />
+                    placeholder="Descripción del Producto" />
                 </div>
             <div class="row">
                 <div class="col mb-0">
-                <label for="sectionImage" class="form-label">Imagen</label>
-                <input type="file" id="sectionImage" name="sectionImage" class="form-control" />
+                <label for="productImage" class="form-label">Imagen</label>
+                <input type="file" id="productImage" name="productImage" class="form-control" />
                 </div>
             </div>
             <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
@@ -161,5 +178,5 @@
 <script src="{{ url('/admin/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
 <script src="{{ url('/admin/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
-<script src="{{ url('/admin/assets/customjs/sectionsList.js') }}"></script>
+<script src="{{ url('/admin/assets/customjs/productsList.js') }}"></script>
 @endsection

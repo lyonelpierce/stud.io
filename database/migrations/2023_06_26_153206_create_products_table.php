@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->integer('section_id');
+            $table->integer('category_id');
+            $table->integer('vendor_id');
+            $table->string('product_name');
+            $table->string('product_description');
+            $table->integer('product_inventory');
+            $table->string('product_price');
+            $table->string('product_discount');
+            $table->string('product_image');
+            $table->string('meta_title');
+            $table->string('meta_description');
+            $table->string('meta_keywords');
+            $table->enum('is_featured', ['No', 'Yes'])->default('No');
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

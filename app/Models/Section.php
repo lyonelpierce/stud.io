@@ -13,4 +13,17 @@ class Section extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Listen for the "deleting" event on the Section model
+        static::deleting(function ($section) {
+            // Delete related categories
+            $section->categories()->each(function ($category) {
+                $category->delete();
+            });
+        });
+    }
 }

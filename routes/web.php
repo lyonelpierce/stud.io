@@ -37,7 +37,7 @@ Route::get('/cities/{stateId}', 'App\Http\Controllers\StateCityController@getCit
 Route::match(['get', 'post'], 'login', 'App\Http\Controllers\AuthController@login')->name('login');
 Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
 
-// Admin and Vendor Routes
+// Admin Routes
 Route::namespace('App\Http\Controllers\Admin')->group(function () {
 
     // Admin Dashboard
@@ -46,22 +46,26 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get', 'post'], 'admin/account', 'AdminController@updateAdminDetails')->name('admin.account');
         Route::match(['get', 'post'], 'admin/security', 'AdminController@updateAdminPassword')->name('admin.security');
 
-        Route::match(['get', 'post'], 'admin/users/vendors', 'AdminController@userList')->name('admin.users.vendors');
-        Route::post('admin/users/userStatus', 'AdminController@userStatus')->name('admin.users.vendors.status');
-        Route::delete('admin/users/userDelete/{userId}', 'AdminController@userDelete')->name('admin.users.vendors.delete');
+        Route::match(['get', 'post'], 'admin/users/vendors', 'VendorController@userList')->name('admin.users.vendors');
+        Route::post('admin/users/userStatus', 'VendorController@userStatus')->name('admin.users.vendors.status');
+        Route::delete('admin/users/userDelete/{userId}', 'VendorController@userDelete')->name('admin.users.vendors.delete');
 
-        Route::match(['get', 'post'], 'admin/sections', 'AdminController@sectionList')->name('admin.sections');
-        Route::post('admin/sections/sectionStatus', 'AdminController@sectionStatus')->name('admin.sections.status');
-        Route::delete('admin/sections/sectionDelete/{sectionId}', 'AdminController@sectionDelete')->name('admin.sections.delete');
+        Route::match(['get', 'post'], 'admin/sections', 'SectionController@sectionList')->name('admin.sections');
+        Route::post('admin/sections/sectionStatus', 'SectionController@sectionStatus')->name('admin.sections.status');
+        Route::delete('admin/sections/sectionDelete/{sectionId}', 'SectionController@sectionDelete')->name('admin.sections.delete');
 
-        Route::match(['get', 'post'], 'admin/categories', 'AdminController@categoryList')->name('admin.categories');
-        Route::post('admin/categories/categoryStatus', 'AdminController@categoryStatus')->name('admin.categories.status');
-        Route::delete('admin/categories/categoryDelete/{categoryId}', 'AdminController@categoryDelete')->name('admin.categories.delete');
+        Route::match(['get', 'post'], 'admin/categories', 'CategoryController@categoryList')->name('admin.categories');
+        Route::post('admin/categories/categoryStatus', 'CategoryController@categoryStatus')->name('admin.categories.status');
+        Route::delete('admin/categories/categoryDelete/{categoryId}', 'CategoryController@categoryDelete')->name('admin.categories.delete');
 
-        Route::match(['get', 'post'], 'admin/products', 'AdminController@productList')->name('admin.products');
-        Route::post('admin/products/productStatus', 'AdminController@productStatus')->name('admin.products.status');
-        Route::delete('admin/products/productDelete/{productId}', 'AdminController@productDelete')->name('admin.products.delete');
+        Route::match(['get'], 'admin/products', 'ProductController@productList')->name('admin.products');
+        Route::post('admin/products/productStatus', 'ProductController@productStatus')->name('admin.products.status');
+        Route::delete('admin/products/productDelete/{productId}', 'ProductController@productDelete')->name('admin.products.delete');
     });
+});
+
+// Vendor Routes
+Route::namespace('App\Http\Controllers\Vendor')->group(function () {
 
     // Vendor Dashboard
     Route::group(['middleware' => ['vendor']], function () {

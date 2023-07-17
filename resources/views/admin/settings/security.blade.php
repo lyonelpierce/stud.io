@@ -21,13 +21,13 @@
 
                     @if (!empty($adminDetails['image']))
                         <img class="img-fluid rounded mb-3 pt-1 mt-4"
-                            src="{{ secure_asset('admin/images/photos/'.$adminDetails['image']) }}"
+                            src="{{ url('admin/images/photos/'.$adminDetails['image']) }}"
                             height="100"
                             width="100"
                             alt="User avatar">
                     @else
                         <img class="img-fluid rounded mb-3 pt-1 mt-4"
-                            src="{{ secure_asset('admin/images/photos/default.png') }}"
+                            src="{{ url('admin/images/photos/default.png') }}"
                             height="100"
                             width="100"
                             alt="User avatar">
@@ -150,7 +150,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
-                <form id="editUserForm" class="row g-3 mb-4" action="{{ Auth::guard('admin')->check() ? secure_asset('admin/security') : secure_asset('vendor/security') }}" method="post" enctype="multipart/form-data">@csrf
+                <form id="editUserForm" class="row g-3 mb-4" action="{{ Auth::guard('admin')->check() ? url('admin/security') : url('vendor/security') }}" method="post" enctype="multipart/form-data">@csrf
                     <div>
                     <div class="col-12 col-md-6">
                     <label class="form-label" for="accountCurrentPassword">Contraseña Actual</label>
@@ -213,5 +213,5 @@
     <div class="content-backdrop fade"></div>
 </div>
 
-<script src="{{ secure_asset('/admin/assets/customjs/settingsAccount.js') }}"></script>
+<script src="{{ url('/admin/assets/customjs/settingsAccount.js') }}"></script>
 @endsection
