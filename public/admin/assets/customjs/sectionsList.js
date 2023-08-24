@@ -30,6 +30,7 @@ $(document).on("click", ".item-add", function () {
     $("#sectionName").val("");
     $("#sectionDescription").val("");
     $("#sectionButton").text("Crear");
+    $("#existingImage").hide();
 });
 
 // Section Edit Button
@@ -50,6 +51,12 @@ $(document).on("click", ".item-update", function () {
             $("#sectionName").val(response.name);
             $("#sectionDescription").val(response.description);
             $("#sectionButton").text("Editar");
+            if (response.image) {
+                let imageUrl = `/catalog/sections/images/` + response.image;
+                $("#existingImage").attr("src", imageUrl).show();
+            } else {
+                $("#existingImage").hide();
+            }
         },
     });
 });

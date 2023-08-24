@@ -135,6 +135,8 @@
                 <input type="file" id="sectionImage" name="sectionImage" class="form-control" />
                 </div>
             </div>
+            <img class="mt-4" id="existingImage" src="" alt="Existing Image" width="50">
+
             <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
             <div>
                 <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1" id="sectionButton"></button>
