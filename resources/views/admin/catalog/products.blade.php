@@ -51,6 +51,7 @@
                     <th>Tienda</th>
                     <th>Sección</th>
                     <th>Categoría</th>
+                    <th>Precio</th>
                     <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
@@ -87,6 +88,11 @@
                     <td>
                         <div class="d-flex flex-column">
                             <span class="emp_name text-truncate">{{ $product['category']['name'] }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column">
+                            <span class="emp_name text-truncate">{{ $product['product_price'] }}</span>
                         </div>
                     </td>
                     <td>

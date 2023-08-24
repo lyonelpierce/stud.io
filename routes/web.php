@@ -53,6 +53,7 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get', 'post'], 'admin/sections', 'SectionController@sectionList')->name('admin.sections');
         Route::post('admin/sections/sectionStatus', 'SectionController@sectionStatus')->name('admin.sections.status');
         Route::delete('admin/sections/sectionDelete/{sectionId}', 'SectionController@sectionDelete')->name('admin.sections.delete');
+        Route::match(['get','post'], 'admin/sections/sectionUpdate/{sectionId}', 'SectionController@sectionUpdate')->name('admin.sections.update');
 
         Route::match(['get', 'post'], 'admin/categories', 'CategoryController@categoryList')->name('admin.categories');
         Route::post('admin/categories/categoryStatus', 'CategoryController@categoryStatus')->name('admin.categories.status');

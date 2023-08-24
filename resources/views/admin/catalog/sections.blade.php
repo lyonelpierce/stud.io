@@ -24,7 +24,7 @@
             <div class="card-datatable table-responsive pt-0">
             <div class="head-label py-4 px-3 d-flex justify-content-between">
                 <h5 class="card-title mb-0">Lista de Secciones</h5>
-                <button class="btn btn-secondary create-new btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addSectionSidebar" tabindex="0" type="button">
+                <button class="btn btn-secondary create-new btn-primary item-add" data-bs-toggle="offcanvas" data-bs-target="#addSectionSidebar" tabindex="0" type="button">
                     <span>
                         <i class="ti ti-plus me-sm-1"></i>
                         <span class="d-none d-sm-inline-block">Nueva Sección</span>
@@ -82,6 +82,9 @@
                         </label>
                     </td>
                     <td>
+                        <a href="javascript:;" class="btn-sm btn-item item-update" sectionId="{{ $section['id'] }}" data-bs-toggle="offcanvas" data-bs-target="#addSectionSidebar">
+                            <i class="ti ti-pencil"></i>
+                        </a>
                         <a href="javascript:;" class="btn-sm btn-item item-delete" sectionId="{{ $section['id'] }}">
                             <i class="ti ti-trash text-danger"></i>
                         </a>
@@ -101,7 +104,7 @@
         id="addSectionSidebar"
         aria-labelledby="addSectionSidebarLabel">
         <div class="offcanvas-header my-1">
-        <h5 class="offcanvas-title" id="addSectionSidebarLabel">Nueva Sección</h5>
+        <h5 class="offcanvas-title" id="addSectionSidebarLabel"></h5>
         <button
             type="button"
             class="btn-close text-reset"
@@ -113,7 +116,7 @@
             <div class="row">
                 <div class="col mb-3">
                 <label for="sectionName" class="form-label">Nombre</label>
-                <input type="text" id="sectionName" name="sectionName" class="form-control" placeholder="Nombre de la categoría" />
+                <input type="text" id="sectionName" name="sectionName" class="form-control" placeholder="Nombre de la sección" />
                 </div>
             </div>
             <div class="row">
@@ -124,7 +127,7 @@
                     id="sectionDescription"
                     name="sectionDescription"
                     class="form-control"
-                    placeholder="Descripción de la categoría" />
+                    placeholder="Descripción de la sección" />
                 </div>
             <div class="row">
                 <div class="col mb-0">
@@ -134,7 +137,7 @@
             </div>
             <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
             <div>
-                <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1">Crear</button>
+                <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1" id="sectionButton"></button>
                 <button
                 type="reset"
                 class="btn btn-label-secondary btn-cancel me-sm-0 me-1"

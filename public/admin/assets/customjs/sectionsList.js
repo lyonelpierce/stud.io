@@ -24,8 +24,37 @@ $(document).on("change", ".switch-input", function () {
         data: { sectionId: sectionId, status: status },
     });
 });
+// Section Add Button
+$(document).on("click", ".item-add", function () {
+    $("#addSectionSidebarLabel").text("Nueva Sección");
+    $("#sectionName").val("");
+    $("#sectionDescription").val("");
+    $("#sectionButton").text("Crear");
+});
 
-// User Delete Button
+// Section Edit Button
+$(document).on("click", ".item-update", function () {
+    let sectionId = $(this).attr("sectionId");
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "GET",
+        url: "/admin/sections/sectionUpdate/" + sectionId,
+        success: function (response) {
+            $("#addSectionSidebarLabel").text("Editar Sección");
+            $("#newsection").attr(
+                "action",
+                "/admin/sections/sectionUpdate/" + sectionId
+            );
+            $("#sectionName").val(response.name);
+            $("#sectionDescription").val(response.description);
+            $("#sectionButton").text("Editar");
+        },
+    });
+});
+
+// Section Delete Button
 $(document).on("click", ".item-delete", function () {
     let sectionId = $(this).attr("sectionId");
 
