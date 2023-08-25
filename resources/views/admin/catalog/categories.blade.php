@@ -131,6 +131,7 @@
                         id="categorySection"
                         name="categorySection"
                         class="form-select"
+                        role="button"
                         data-allow-clear="true">
                         <option value="" disabled>Seleccionar Sección</option>
                         @foreach($sections as $section)
