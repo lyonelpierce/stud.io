@@ -58,6 +58,7 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get', 'post'], 'admin/categories', 'CategoryController@categoryList')->name('admin.categories');
         Route::post('admin/categories/categoryStatus', 'CategoryController@categoryStatus')->name('admin.categories.status');
         Route::delete('admin/categories/categoryDelete/{categoryId}', 'CategoryController@categoryDelete')->name('admin.categories.delete');
+        Route::match(['get','post'], 'admin/categories/categoryUpdate/{categoryId}', 'CategoryController@categoryUpdate')->name('admin.categories.update');
 
         Route::match(['get'], 'admin/products', 'ProductController@productList')->name('admin.products');
         Route::post('admin/products/productStatus', 'ProductController@productStatus')->name('admin.products.status');

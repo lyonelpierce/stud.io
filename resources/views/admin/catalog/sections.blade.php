@@ -104,7 +104,7 @@
         id="addSectionSidebar"
         aria-labelledby="addSectionSidebarLabel">
         <div class="offcanvas-header my-1">
-        <h5 class="offcanvas-title" id="addSectionSidebarLabel"></h5>
+        <h5 class="offcanvas-title" id="addSectionSidebarLabel">Crear Sección</h5>
         <button
             type="button"
             class="btn-close text-reset"
@@ -136,10 +136,9 @@
                 </div>
             </div>
             <img class="mt-4" id="existingImage" src="" alt="Existing Image" width="50">
-
             <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
             <div>
-                <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1" id="sectionButton"></button>
+                <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1" id="sectionButton">Crear</button>
                 <button
                 type="reset"
                 class="btn btn-label-secondary btn-cancel me-sm-0 me-1"

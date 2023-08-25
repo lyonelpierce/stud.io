@@ -24,7 +24,7 @@
             <div class="card-datatable table-responsive pt-0">
             <div class="head-label py-4 px-3 d-flex justify-content-between">
                 <h5 class="card-title mb-0">Lista de Categorías</h5>
-                <button class="btn btn-secondary create-new btn-primary" data-bs-toggle="offcanvas" data-bs-target="#addCategorySidebar" tabindex="0" type="button">
+                <button class="btn btn-secondary create-new btn-primary item-add" data-bs-toggle="offcanvas" data-bs-target="#addCategorySidebar" tabindex="0" type="button">
                     <span>
                         <i class="ti ti-plus me-sm-1"></i>
                         <span class="d-none d-sm-inline-block">Nueva Categoría</span>
@@ -93,6 +93,9 @@
                         </label>
                     </td>
                     <td>
+                        <a href="javascript:;" class="btn-sm btn-item item-update" categoryId="{{ $category['id'] }}" data-bs-toggle="offcanvas" data-bs-target="#addCategorySidebar">
+                            <i class="ti ti-pencil"></i>
+                        </a>
                         <a href="javascript:;" class="btn-sm btn-item item-delete" categoryId="{{ $category['id'] }}">
                             <i class="ti ti-trash text-danger"></i>
                         </a>
@@ -158,9 +161,10 @@
                         <input type="file" id="categoryImage" name="categoryImage" class="form-control" />
                         </div>
                     </div>
+                    <img class="mt-4" id="existingImage" src="" alt="Existing Image" width="50">
                     <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
                     <div>
-                        <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1">Crear</button>
+                        <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1" id="categoryButton">Crear</button>
                         <button
                         type="reset"
                         class="btn btn-label-secondary btn-cancel me-sm-0 me-1"

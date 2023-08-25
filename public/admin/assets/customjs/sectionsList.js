@@ -24,13 +24,14 @@ $(document).on("change", ".switch-input", function () {
         data: { sectionId: sectionId, status: status },
     });
 });
+
 // Section Add Button
 $(document).on("click", ".item-add", function () {
     $("#addSectionSidebarLabel").text("Nueva Sección");
     $("#sectionName").val("");
     $("#sectionDescription").val("");
     $("#sectionButton").text("Crear");
-    $("#existingImage").hide();
+    $("#existingImage").attr("hidden", true);
 });
 
 // Section Edit Button
@@ -53,9 +54,9 @@ $(document).on("click", ".item-update", function () {
             $("#sectionButton").text("Editar");
             if (response.image) {
                 let imageUrl = `/catalog/sections/images/` + response.image;
-                $("#existingImage").attr("src", imageUrl).show();
+                $("#existingImage").attr("src", imageUrl).removeAttr("hidden");
             } else {
-                $("#existingImage").hide();
+                $("#existingImage").attr("hidden", true);
             }
         },
     });

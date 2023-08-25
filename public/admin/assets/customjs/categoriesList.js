@@ -11,7 +11,7 @@ $(function () {
     }
 });
 
-// User Info Toggler
+// Category Status Toggler
 $(document).on("change", ".switch-input", function () {
     let categoryId = $(this).attr("categoryId");
     let status = $(this).prop("checked") ? 1 : 0;
@@ -25,7 +25,46 @@ $(document).on("change", ".switch-input", function () {
     });
 });
 
-// User Delete Button
+// Category Add Button
+$(document).on("click", ".item-add", function () {
+    $("#addCategorySidebarLabel").text("Nueva Categoría");
+    $("#categorySection").val("");
+    $("#categoryName").val("");
+    $("#categoryDescription").val("");
+    $("#categoryButton").text("Crear");
+    $("#existingImage").attr("hidden", true);
+});
+
+// Category Edit Button
+$(document).on("click", ".item-update", function () {
+    let categoryId = $(this).attr("categoryId");
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "GET",
+        url: "/admin/categories/categoryUpdate/" + categoryId,
+        success: function (response) {
+            $("#addCategorySidebarLabel").text("Editar Categoría");
+            $("#newcategory").attr(
+                "action",
+                "/admin/categories/categoryUpdate/" + categoryId
+            );
+            $("#categorySection").val(response.section_id);
+            $("#categoryName").val(response.name);
+            $("#categoryDescription").val(response.description);
+            $("#categoryButton").text("Editar");
+            if (response.image) {
+                let imageUrl = `/catalog/categories/images/` + response.image;
+                $("#existingImage").attr("src", imageUrl).removeAttr("hidden");
+            } else {
+                $("#existingImage").attr("hidden", true);
+            }
+        },
+    });
+});
+
+// Category Delete Button
 $(document).on("click", ".item-delete", function () {
     let categoryId = $(this).attr("categoryId");
 
