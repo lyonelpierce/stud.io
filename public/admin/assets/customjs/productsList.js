@@ -50,8 +50,9 @@ $(document).on("click", ".item-update", function () {
             $("#metaDescription").val(response.meta_description);
             $("#metaKeyword").val(response.meta_keywords);
             $("#isFeatured").prop("checked", response.is_featured === "Yes");
-            if (response.image) {
-                let imageUrl = `/catalog/categories/images/` + response.image;
+            if (response.product_image) {
+                let imageUrl =
+                    `/catalog/products/images/` + response.product_image;
                 $("#existingImage").attr("src", imageUrl).removeAttr("hidden");
             } else {
                 $("#existingImage").attr("hidden", true);

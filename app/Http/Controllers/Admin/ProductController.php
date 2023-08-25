@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Section;
 use App\Models\Category;
+use Image;
 
 class ProductController extends Controller
 {
@@ -82,7 +83,7 @@ class ProductController extends Controller
                         $extension = $image_tmp->getClientOriginalExtension();
                         // Generate New Image Name
                         $imageName = rand(111, 99999).'.'.$extension;
-                        $imagePath = 'catalog/product/images/'.$imageName;
+                        $imagePath = 'catalog/products/images/'.$imageName;
                         // Upload Image
                         Image::make($image_tmp)->resize(600, 600)->save($imagePath);
                     } else {
@@ -106,6 +107,9 @@ class ProductController extends Controller
             $product->meta_title = $data['metaTitle'];
             $product->meta_description = $data['metaDescription'];
             $product->meta_keywords = $data['metaKeyword'];
+            if ($imageName != "") {
+                $product->product_image = $imageName;
+            }
             if (isset($data['isFeatured'])) {
                 $product->is_featured = "Yes";
             } else {
