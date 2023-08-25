@@ -11,8 +11,8 @@ $(function () {
     }
 });
 
-// User Info Toggler
-$(document).on("change", ".switch-input", function () {
+// Product Status Toggler
+$(document).on("change", "#statusSwitch", function () {
     let productId = $(this).attr("productId");
     let status = $(this).prop("checked") ? 1 : 0;
     $.ajax({
@@ -25,7 +25,42 @@ $(document).on("change", ".switch-input", function () {
     });
 });
 
-// User Delete Button
+// Product Update Button
+$(document).on("click", ".item-update", function () {
+    let productId = $(this).attr("productId");
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "GET",
+        url: "/admin/products/productUpdate/" + productId,
+        success: function (response) {
+            $("#newProduct").attr(
+                "action",
+                "/admin/products/productUpdate/" + productId
+            );
+            $("#productSection").val(response.section_id);
+            $("#productCategory").val(response.category_id);
+            $("#productName").val(response.product_name);
+            $("#productDescription").val(response.product_description);
+            $("#productPrice").val(response.product_price);
+            $("#productDiscount").val(response.product_discount);
+            $("#productInventory").val(response.product_inventory);
+            $("#metaTitle").val(response.meta_title);
+            $("#metaDescription").val(response.meta_description);
+            $("#metaKeyword").val(response.meta_keywords);
+            $("#isFeatured").prop("checked", response.is_featured === "Yes");
+            if (response.image) {
+                let imageUrl = `/catalog/categories/images/` + response.image;
+                $("#existingImage").attr("src", imageUrl).removeAttr("hidden");
+            } else {
+                $("#existingImage").attr("hidden", true);
+            }
+        },
+    });
+});
+
+// Product Delete Button
 $(document).on("click", ".item-delete", function () {
     let productId = $(this).attr("productId");
 

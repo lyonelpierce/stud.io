@@ -63,6 +63,7 @@ Route::namespace('App\Http\Controllers\Admin')->group(function () {
         Route::match(['get'], 'admin/products', 'ProductController@productList')->name('admin.products');
         Route::post('admin/products/productStatus', 'ProductController@productStatus')->name('admin.products.status');
         Route::delete('admin/products/productDelete/{productId}', 'ProductController@productDelete')->name('admin.products.delete');
+        Route::match(['get', 'post'], 'admin/products/productUpdate/{productId}', 'ProductController@productUpdate')->name('admin.products.update');
     });
 });
 
