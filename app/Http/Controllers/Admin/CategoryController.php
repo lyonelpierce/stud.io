@@ -91,16 +91,18 @@ class CategoryController extends Controller
             // echo "<pre>"; print_r($category); die;
             return response()->json($category);
         } else {
-
             $data = $request->all();
             // echo "<pre>"; print_r($data); die;
+
             $rules = [
+                'categorySection' => 'required',
                 'categoryName' => 'required',
                 'categoryDescription' => 'required',
                 'categoryImage' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             ];
 
             $customMessages = [
+                'categorySection.required' => 'Una sección es requerida',
                 'categoryName.required' => 'Nombre de categoría es requerido',
                 'categoryDescription.required' => 'Descripción de categoría es requerida',
                 'categoryImage.image' => 'Formato de imagen inválido',
@@ -133,15 +135,16 @@ class CategoryController extends Controller
                 $imageName = "";
             }
 
-            // Update section
-            $section = Section::find($id);
-            $section->name = $data['sectionName'];
-            $section->description = $data['sectionDescription'];
-            $section->image = $imageName;
-            $section->status = 1;
-            $section->save();
+            // Update category
+            $category = category::find($id);
+            $category->section_id = $data['categorySection'];
+            $category->name = $data['categoryName'];
+            $category->description = $data['categoryDescription'];
+            $category->image = $imageName;
+            $category->status = 1;
+            $category->save();
 
-            return redirect()->back()->with('success_message', 'Sección actualizada!');
+            return redirect()->back()->with('success_message', 'Categoría actualizada!');
         }
     }
 

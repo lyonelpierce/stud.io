@@ -46,7 +46,7 @@ $(document).on("click", ".item-update", function () {
         url: "/admin/categories/categoryUpdate/" + categoryId,
         success: function (response) {
             $("#addCategorySidebarLabel").text("Editar Categoría");
-            $("#newcategory").attr(
+            $("#newCategory").attr(
                 "action",
                 "/admin/categories/categoryUpdate/" + categoryId
             );
